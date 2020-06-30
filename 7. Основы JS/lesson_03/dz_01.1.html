@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+//Для генерации случайных чисел
+// function getRandomNumber(max){
+// 	var num = parseInt(Math.random() * max);
+// 	return num;
+// }
+
+function generateArray(length){
+	array = [];
+	for(var i = 1; i <= length; i++){
+			array.push(i);
+	}
+	return array;
+}	
+//Проверка на ввод только не отрицательного числа
+while(true){
+
+	var user_num = +prompt('Введите любое не отрицательное число:');
+	if(isNaN(user_num) || user_num < 0 ){
+		user_num = +prompt('Введите любое не отрицательное число:');
+	}else{
+		break;
+	}
+}
+
+var arr = generateArray(user_num);
+alert('Ваш массив чисел:\n' + arr);
+</script>

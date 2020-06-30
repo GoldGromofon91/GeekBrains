@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+function getRandomNumber(max){
+	var num = Math.round(Math.random() * max);
+	return num;
+}
+function generateArray(length){
+	array = [];
+	for(var i = 0; i <= length - 1; i++){
+			var randomNumber = getRandomNumber(100);
+			array.push(randomNumber);
+	}
+	return array;
+}	
+function generateSumNumber(massive){
+	sum = 0;
+	for(var i = 0; i <= arr.length - 1; i ++){
+		sum = sum + arr [i];
+	}
+	return sum;
+}
+var n = 5;
+var arr = generateArray(n);
+alert('Мы сгенирировали для Вас массив из ' + n + ' чисел\nВаш массив случайных чисел:\n' + arr);
+var sum = generateSumNumber(arr)
+alert("Ваш массив: "+"\n"+ arr +"\nСумма чисел массива = " + sum);
+
+</script>

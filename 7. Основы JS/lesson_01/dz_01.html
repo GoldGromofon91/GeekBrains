@@ -1,0 +1,18 @@
+<!-- Домашнее задание к уроку №1
+Задание №1 -->
+<meta charset="utf-8">
+<script>
+	var EUR = 80.82;
+	var USD = 73.82;
+
+	alert('Текущий курс EUR: '+ EUR + "		"+ 'Текущий курс USD: '+ USD);
+	var RUS_money = + prompt('Какую сумму в рублях вы хотите конвертировать?');
+
+	var eur_conv = RUS_money / EUR;
+	var eur_fix = eur_conv.toFixed(2);
+	var usd_conv = RUS_money / USD;
+	var usd_fix = usd_conv.toFixed(2);
+
+	alert('Ваша сумма в EUR: ' + eur_fix + '  ' + 'Ваша сумма в USD: ' + usd_fix); 
+</script>
+

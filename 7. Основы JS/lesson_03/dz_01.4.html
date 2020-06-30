@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+function getRandomNumber(max){
+	var num = Math.round(Math.random() * max);
+	return num;
+}
+function generateArray(length){
+	array = [];
+	for(var i = 0; i <= length - 1; i++){
+			var randomNumber = getRandomNumber(100);
+			array.push(randomNumber);
+	}
+	return array;
+}	
+function generateCompari(massive){
+	var min = arr[0];
+	for(var i = 0; i <= arr.length - 1; i ++){
+		if(arr[i] < min){
+			min = arr[i];		
+		}
+	}
+	return min;
+		
+}
+
+var n = 5;
+var arr = generateArray(n);
+alert('Мы сгенирировали для Вас массив из ' + n + ' чисел\nВаш массив случайных чисел:\n' + arr);
+var comp = generateCompari(arr);
+alert("Ваш массив: "+"\n"+ arr +"\nМинимальное число в этом массиве: " + "\n"  + comp);
+
+</script>

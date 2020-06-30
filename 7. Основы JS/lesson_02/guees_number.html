@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+var number = parseInt(Math.random() * 100);		
+var player_numb = 1;
+
+while(true){
+
+	var user_answer = prompt("Здравствуйте!\nУгадайте число от 0 до 100.\nХодит игрок номер " + player_numb + ".\nДля выхода нажмите q");
+
+	if(user_answer == "q"){
+		alert("До свидания! Попробуйте чуть позже");
+		break;
+	}
+		
+	user_answer = parseInt(user_answer);
+
+	if(user_answer == number){
+		alert(" Поздравляю игрока номер " + player_numb +".Вы угадали число! ");
+		break;
+	}else if(user_answer > number){
+		alert(" Загаданное число меньше. ");
+	}else if(user_answer < number){
+		alert(" Загаданное число больше. ");
+	}
+	
+	if(player_numb == 1) // смена игрока если тек.номер равен 1 то ходит второй и наоборот
+		player_numb = 2;
+	else
+		player_numb = 1;
+}
+	//user_answer = +prompt(" Попробуйте еще раз. Введите число от 0 до 100\nУ вас осталось " + (Maxcount - user_count) + " попыток.");// закрыли т.к цикл стал бесконечным
+alert("Правильный ответ " + number);
+</script>

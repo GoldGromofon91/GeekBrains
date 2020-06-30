@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+function getRandomNumber(max){
+	var num = Math.round(Math.random() * max);
+	return num;
+}
+function generateArray(length){
+	array = [];
+	for(var i = 0; i <= length - 1; i++){
+			var randomNumber = getRandomNumber(100);
+			array.push(randomNumber);
+	}
+	return array;
+}	
+function generateEvenNumber(array){
+	var EvenNumber = [];
+	for(var i = 0; i <= array.length - 1; i ++){
+		if((array[i] % 2) == 0 ){
+			EvenNumber.push(array[i]);		
+		}
+		if(array[i] == 0){
+			array.splice(i,1);
+		}
+	}
+	return EvenNumber;
+}
+var n = 5;
+var arr = generateArray(n);
+alert('Мы сгенирировали для Вас массив из ' + n + ' чисел\nВаш массив случайных чисел:\n' + arr);
+var comp = generateEvenNumber(arr);
+alert("Ваш массив: "+"\n"+ arr +"\nВсе четные числа в этом массиве: " + "\n"  + comp);
+
+</script>

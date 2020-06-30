@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<script>
+var score = 0;
+var answers_1 = ["свинья","свин", "свинка",'поросенок','поросёнок'];
+var answers_2 = ['ножницы'];
+var answers_3 = ['лампа','лампочка','светильник', 'люстра'];
+
+function answer(mass_question,usr_answ){
+	usr_answ = usr_answ.toLowerCase();
+	if(usr_answ != mass_question[0] && usr_answ != mass_question[1] && usr_answ != mass_question[2] && usr_answ != mass_question[3] && usr_answ != mass_question[4]){
+
+		alert('Это не правильный ответ. Следующий вопрос ...')
+	}
+	for(i = 0; i < mass_question.length; i ++ ){
+		if(usr_answ == mass_question[i]){
+			alert("УРА!\nЭто правильный ответ. Вы молодец! Следующая загадка...");
+			score ++;
+			break;
+		}
+	}
+	return;		
+}	
+
+var user_answer = prompt("Угадай загадку!\nПятак есть, а ничего не купит?\nКто это?");
+answer(answers_1,user_answer);
+user_answer = prompt("Угадай загадку!\nДва конца,два кольца, по середине гвоздик?\nЧто это?");
+answer(answers_2,user_answer)
+user_answer = prompt("Угадай загадку\nВисит груша, нельзя скушать\nЧто это?");
+answer(answers_3,user_answer)
+alert("Количество правильных ответов " + score);
+</script>
