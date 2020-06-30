@@ -9,6 +9,6 @@
   -----> 7. Основы JS
   -----> 8. Введение в JS (Interactive Course)
   -----> 9. HTML + CSS (Interactive Course)
-  -----> 10. Web-безопаность (Interactive Course)
-  -----> 11. Linux
+  -----> 10. Linux
+  -----> 11. Web-безопаность (Interactive Course) 
   -----> 12. MySQL
