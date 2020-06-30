@@ -1,0 +1,110 @@
+.text-center {
+  text-align: center;
+}
+
+.header-condensed {
+  margin-bottom: 29px;
+}
+
+.navigation-colored {
+  background-color: #f4f4f4;
+  padding-top: 29px;
+  padding-left: 360px;
+}
+
+.product-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 23px;
+}
+
+.price {
+  color: #212121;
+  font-weight: 100;
+  font-size: 72px;
+  line-height: 48.02px;
+  text-transform: uppercase;
+  margin-top: 36px;
+  margin-bottom: 31px;
+}
+
+.price > span:not(:last-child) {
+  margin-right: 10px;
+}
+
+.price .sign {
+  font-size: 48px;
+}
+
+.price .quantity {
+  font-size: 36px;
+}
+
+.product-item-slider-navigation {
+  margin-top: 11px;
+}
+
+.slider-control:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+.product-item-description {
+  width: 500px;
+  text-align: center;
+  margin-left: 60px;
+}
+
+.button-full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 71px;
+  padding-bottom: 5px;
+  box-shadow: 0 2px 5px 1px #59212121;
+  border-radius: 35px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24.01px;
+  text-transform: uppercase;
+  letter-spacing: 4.4px;
+}
+
+.button-full:after {
+  content: "";
+  display: inline-block;
+  background-image: url(../../img/arrow-white.svg);
+  background-size: 14px;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.button-red {
+  background-color: #f44336;
+}
+
+.description {
+  color: #212121;
+  font-family: Gotham, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24.01px;
+  letter-spacing: 0.4px;
+  margin-top: 50px;
+  text-align: left;
+}
+
+.description > p:not(:last-child) {
+  margin-bottom: 20px;
+}
+.related {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.pb-120{
+  padding-bottom: 120px;
+}
