@@ -1,0 +1,16 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+ alert ("Здравствуйте! \n Данная программа расчитает ваш заработок по вкладу.");
+ var sum = +prompt("Введите сумму вклада");
+ var years = +prompt("Введите количество лет");
+ var percent = +prompt("Введите процент по вкладу за год");
+ var cash;
+ //var mouth = years / 12;
+ for(var i = 1; i <= years; i++){
+ 	sum = sum + sum * (percent / 100); // сложный процент
+ 	cash = sum;
+ 	document.write(" Сумма вклада по истечению " + i + " года " + cash.toFixed(2) + "<br>");
+ }
+document.write(" За " + years + " лет" + " сумма вклада составит " + cash.toFixed(2)); //+ "Вы заработаете " + (cash - sum); - доработать общюю прибыль за i лет
+</script>

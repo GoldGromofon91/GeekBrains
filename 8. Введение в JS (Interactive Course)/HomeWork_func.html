@@ -1,0 +1,102 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+/* задание №1.1
+function getRandomNumber(max){
+	var num = parseInt(Math.random() * max);
+	return num;
+}
+function generateArray(length){
+	array = [];
+	for(var i = 0; i <= length - 1; i++){
+			var randomNumber = getRandomNumber(100);
+			array.push(randomNumber);
+	}
+	return array;
+}	
+var n = 5;
+var arr = generateArray(n);
+ alert(arr);
+ */
+/* задание №1.2
+function getRandomNumber(max){
+	var num = Math.round(Math.random() * max);
+	return num;
+}
+function generateArray(length){
+	array = [];
+	for(var i = 0; i <= length - 1; i++){
+			var randomNumber = getRandomNumber(100);
+			array.push(randomNumber);
+	}
+	return array;
+}	
+function generateSumNumber(massive){
+	sum = 0;
+	for(var i = 0; i <= arr.length - 1; i ++){
+		sum = sum + arr [i];
+	}
+	return sum;
+}
+var n = 5;
+var arr = generateArray(n);
+var sum = generateSumNumber(arr)
+alert("Ваш массив: "+"\n"+ arr +"\nСумма чисел массива = " + sum);
+*/
+/*
+function getRandomNumber(max){
+	var num = Math.round(Math.random() * max);
+	return num;
+}
+function generateArray(length){
+	array = [];
+	for(var i = 0; i <= length - 1; i++){
+			var randomNumber = getRandomNumber(100);
+			array.push(randomNumber);
+	}
+	return array;
+}	
+function generateCompari(massive){
+	var max = arr[0];
+	for(var i = 0; i <= arr.length - 1; i ++){
+		if(arr[i] < max){
+			max = arr[i];		
+		}
+	}
+	return max;
+		
+}
+var n = 5;
+var arr = generateArray(n);
+var comp = generateCompari(arr)
+alert("Ваш массив: "+"\n"+ arr +"\nМинимальное число в этом массиве" + "\n"  + comp);
+*/
+function getRandomNumber(max){
+	var num = Math.round(Math.random() * max);
+	return num;
+}
+function generateArray(length){
+	array = [];
+	for(var i = 0; i <= length - 1; i++){
+			var randomNumber = getRandomNumber(100);
+			array.push(randomNumber);
+	}
+	return array;
+}	
+function generateEvenNumber(array){
+	var EvenNumber = [];
+	for(var i = 0; i <= array.length - 1; i ++){
+		if((array[i] % 2) == 0 ){
+			EvenNumber.push(array[i]);		
+		}
+		if(array[i] == 0){
+			array.splice(i,1);
+		}
+	}
+	return EvenNumber;
+}
+var n = 5;
+var arr = generateArray(n);
+var comp = generateEvenNumber(arr)
+alert("Ваш массив: "+"\n"+ arr +"\nВсе четные числа в этом массиве" + "\n"  + comp);
+
+</script>

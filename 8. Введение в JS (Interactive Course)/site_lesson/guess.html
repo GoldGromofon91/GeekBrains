@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 100);
+		var tryCount = 0;
+		var maxTryCount = 3;
+		var count_player = 0;
+		var player_numb = 1;
+
+		function readInt(){
+			var number = document.getElementById("userAnswer").value;
+			return parseInt(number);
+			// return +document.getElementById("userAnswer").value;
+		}
+
+		function write(text){
+			document.getElementById("info").innerHTML = text;
+		}
+
+		function hide(id){
+			document.getElementById(id).style.display = "none";
+		}
+
+		function us_count(){
+			hide("infoCount")
+			hide("textinfo_count");
+			hide("buttonCount");
+			count_player = +document.getElementById("infoCount").value;
+			return count_player;
+		}
+
+
+		function guess(){
+			var userAnswer = readInt();
+			if (count_player == 1){
+				alert(answer)
+				tryCount++;
+				if(userAnswer == answer){
+					write("<b>Поздравляю, вы угадали!</b>");
+					hide("button");
+					hide("userAnswer");
+				} else if(tryCount >= maxTryCount){
+					write("Вы проиграли<br>Правильный ответ: " + answer);	
+					hide("button");
+					hide("userAnswer");
+				} else if(userAnswer > answer){
+					write("Вы ввели слишком большое число<br>Попробуйте еще раз. Введите число от 1 до 100");
+				} else if(userAnswer < answer){
+					write("Вы ввели слишком маленькое число<br>Попробуйте еще раз. Введите число от 1 до 100");				
+				}
+			}else if (count_player == 2){
+				alert(answer)
+				if(userAnswer == answer){
+					write("<b>Поздравляю игрока № </b> " + player_numb +" .<br><b>Вы угадали число!</b>");
+					hide("button");
+					hide("userAnswer");
+				}else if(userAnswer > answer){
+					write("Вы ввели слишком большое число. Ходит игрок № " + player_numb +" .Для выхода введите <b>111</b>");
+				}else if(userAnswer < answer){
+					write("Вы ввели слишком маленькое число. Ходит игрок №" + player_numb +" .Для выхода введите <b>111</b>");
+				}
+				if(userAnswer == 111){
+					write("До свидания! Правильный ответ: " + answer);
+					hide("button");
+					hide("userAnswer");
+				}
+				if(player_numb == 1) // смена игрока если тек.номер равен 1 то ходит второй и наоборот
+					player_numb = 2;
+				else
+					player_numb = 1;
+			}
+		}
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="#">Угадайка</a>
+		<a href="password.html">Генератор паролей</a>
+
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадай число</h1>
+
+			<div class="box">
+
+				<p id ="textinfo_count">Введите количество игроков:</p>
+				<input type="text" id="infoCount">
+				<br>
+				<a href="#" onClick="us_count();" id="buttonCount">Подтвердить</a>
+				<br>
+				<br>
+				<p id="info">Угадайте число от 0 до 100</p>
+				<input type="text" id="userAnswer">
+				<br>
+				<a href="#" onClick="guess();" id="button">Начать</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; North Star &reg;
+<div>
+
+
+</body>
+</html>

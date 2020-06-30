@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+<script>
+	var EUR = prompt ("Введите курс EUR: ");
+	EUR = parseInt(EUR);
+	var USD = prompt ("Введите курс USD: ");
+	USD = parseInt(USD);
+
+	// var EUR = 80.82;
+	// var USD = 73,82;
+	var RUS = prompt ("Какую сумму в рублях вы хотите конвертировать");
+	RUS = parseInt(RUS);
+	
+	var a = RUS / EUR;
+	var a_short = a.toFixed(2);
+	var b = RUS / USD;
+	var b_short = b.toFixed(2);
+	
+	alert ("Ваша сумма в EUR  = " + a_short + "      " + " Ваша сумма в USD = " + b_short);
+</script>

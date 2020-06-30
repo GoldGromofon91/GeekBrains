@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+var score = 0;	
+
+function askFormassive(words){
+	while(words.length !=0){
+		var n = parseInt(Math.random() * words.length);
+		var user_answer = prompt("Как переводится слово " + words [n][0] + " ?" + "Для выхода нажмите q.");
+		user_answer = user_answer.toLowerCase();
+		if(user_answer == "q"){
+			alert("До свидания! Попробуйте в следующий раз...");
+			return;
+		}
+		if(user_answer == words [n][1]){
+			alert("Поздравляю! Вы ответили верно.");
+			words.splice(n,1); // удаление одной n-й строки
+			score++;
+		}else{
+			alert("Вы ошиблись! Правильный ответ " + words [n][1] + ".");
+		}
+	}
+	alert("Вы ответили верно " + score + " раз(а)");
+}
+var easywords = [
+	[ "Green", "зеленый"],
+	[ "Face", "лицо"],
+	[ "Red", "красный"],
+	[ "House", "дом"],
+	[ "Blue", "синий"],
+];
+askFormassive(easywords);
+var hardwords = [
+	[ "Shoulders", "плечи"],
+	[ "Kitchen", "кухня"],
+	[ "Rainbow", "радуга"],
+	[ "Bonfire", "костёр"],
+	[ "Suitcase", "чемодан"],
+];
+alert("Давайте перейдем на новый уровень!");
+askFormassive(hardwords);
+</script>

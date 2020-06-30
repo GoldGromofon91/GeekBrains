@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+function generateText(letters, length){
+	var ran_text = "";
+	for(var i = 0; i < length; i ++){
+		var n = getRandomNumber(letters.length - 1);
+		ran_text = ran_text + letters [n];
+	}
+	return ran_text;
+}
+
+function getRandomNumber(max){
+	return Math.round(Math.random() * max);
+}
+
+alert("Здравствуйте!\nВас приветствует программа по обучению слепой печати");
+alert("Положите 4-ре пальца левой руки - мезинец, безымянный, средний, указательный на клавиши - ф, ы, в, а. Запомните, что буква А находится под вашим указательным пальцем, а буква Ф под мизинцем.");
+
+while (true){
+	alert("Этап №1.\nТеперь неспеша набирайте представленный текст.\nПостарайтесь не смотреть на клавиатуру.\nДля выхода нажмите q");
+
+	var text = generateText(["ф", "а"],10); // условно готовая функция которая создает текст вида афафафффаа
+	var user_text = prompt(text);
+	if(user_text == "q"){
+		alert("До скорой встречи!")
+		break;
+	}
+	if(user_text == text){
+		alert("Поздравляю! Всё верно.");
+		break;
+	}else {
+		alert("Вы ошиблись. Попробуйте еще раз!")
+	}
+}
+
+
+
+</script>

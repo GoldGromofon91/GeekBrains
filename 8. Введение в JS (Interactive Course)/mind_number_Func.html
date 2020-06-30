@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+function compareAnswer(user_answer,answer){
+	if(user_answer == answer){
+		alert("Всё верно! Вы молодец!")
+		count++;
+	}else{
+		alert("Вы ошиблись!\nВерный ответ " + answer);
+	}
+}
+function getRandomNumber(max){
+	var rand = parseInt(Math.random() * max);
+	return rand;
+}
+function getRandomNumberArray(Length){
+	var arr = [];
+	for(var i = 0; i < Length; i++){
+		var random_number = getRandomNumber(100);
+		arr.push(random_number);
+	}
+	return arr;
+}
+
+var count = 0;
+var number = getRandomNumberArray(5);
+
+alert("Здравствуйте!\nЗапомните числа и их порядок\n" + number);
+
+var user_answer = +prompt("Вспомните, каким было первое число?");
+compareAnswer(user_answer, number[0]);
+
+user_answer = +prompt("А теперь вспомните какое было последнее число?")
+compareAnswer(user_answer,number[ number.length - 1 ]);
+
+var n = getRandomNumber(number.length - 1);
+user_answer = +prompt("Попробуйте угадать число под номером " + (n + 1) + "?");
+compareAnswer(user_answer,number [ n ] );
+
+alert("Вы угадали " + count + " раз.")
+</script>

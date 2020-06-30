@@ -1,0 +1,12 @@
+<meta charset="utf-8">
+<script>
+do{
+	var n =  +prompt("Введите, пожалуйста не отрицательное число!");
+}while(isNaN(n) || n < 0)
+	var sum = 0;
+	for(var i = 0; i <= n; i ++){
+		sum = sum + i;
+		// document.write(i + "    " + sum + "<br>"); // отображение всех цифр Н и их суммы
+	}
+	document.write (sum);
+</script>
