@@ -1,0 +1,8 @@
+print('Здравствуйте! Сейчас мы проведем знакомство с программой!')
+usr_numb = int(input('Введите любое число от "0" до "100": '))
+usr_name = input('Введите ваше Имя: ')
+usr_surname = input('Введите вашу Фамилию: ')
+print(f'{usr_name} {usr_surname}, вы ввели число: {usr_numb}')
+print(f'Тип числа {usr_numb}' , type(usr_numb))
+print(f'Тип числа: {usr_numb}' , type(usr_numb))
+print(f'Тип имени и фамилии: {usr_name}, {usr_surname}' , type(usr_name),type(usr_surname))
