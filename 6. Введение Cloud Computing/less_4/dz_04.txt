@@ -1,0 +1,32 @@
+
+
+#Создали от пользователя с правами root директорию less_4 
+#В ней создали файл hello.py
+    5  mkdir less_4
+    6  ll
+    7  sudo apt install vim-runtime
+    9  cd less_4
+   10  vim hello.py
+
+ #Создали нового пользователя,без своего каталога
+ #Папке less_4 дали права на редактирование другим пользователям
+   /13  chmod 0+rw less_4/hello.py
+   /14  chmod 0=rwx less_4/hello.py
+   /15  chmod --help
+   16  sudo useradd -s /bin/bash new_user
+   18  chmod 777 less_4
+#Задали пароль пользоввателю
+   23  sudo passwd new_user
+   24  su new_user
+ #Внесли изменение в файле (фото1)
+   
+# Создали нового пользователя со своим катологом
+   48  sudo useradd -m -d /home/ubuntu/new_user -s /bin/bash user1
+   /50  chmod 777 new_user
+# Предоставили права на работу другим пользователям с ним   
+   51  sudo chmod 777 new_user
+   52  ll
+   53  sudo passwd user1
+   54  su user1
+# Запустили файл(фото 2)
+

@@ -1,0 +1,42 @@
+    
+    UUID="fb50339d-4bf0-4801-a069-4a204db52abf
+
+    1  sudo apt update
+    2  sudo apt install tree
+    3  mkdir less_6
+    4  echo 'Hello' > less_6/hello.txt
+# Подключаем Volumes, проверили файловую систему
+   11  lsblk
+   12  sudo file -s /dev/xvdf
+   13  mkfs --help
+# Установили файловую систему, проверили ее после устанвоки
+   15  sudo mkfs -t xfs /dev/xvdf
+   17  sudo file -s /dev/xvdf
+# Добавили каталог для Volumes
+   27  sudo mkdir /disk2
+#Смонтировали Volume в папку disk2
+   29  sudo mount /dev/xvdf /disk2
+   30  lsblk
+   31  ll /
+   32  df -hT
+# Предоставили права для записи на диск
+   33  sudo chmod o+w /disk2
+# Создали папку и файл на диске
+   37  mkdir /disk2/less_06
+   38  ll /disk2
+   39  echo 'TEST' > /disk2/less_06/test.txt
+#Добавили Volume к автозапуску Instance
+   41  cat /etc/fstab
+   42  cp /etc/fstab /etc/fstab_cp
+   43  sudo cp /etc/fstab /etc/fstab_cp
+   46  clear
+   47  blkid
+   48  exit
+#Создали точку монтирования на новом Instance 
+   49  sudo mkdir /disk
+# Выполняем монтирование диска в папку /disk
+   50  sudo mount /dev/xvdf /disk
+# Открыли на редактирваоние файл с монтированного диска
+   51  nano /disk/less_06/test.txt
+   
+

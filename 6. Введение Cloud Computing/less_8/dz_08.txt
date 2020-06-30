@@ -1,0 +1,14 @@
+# Создали папку
+	10  mkdir less_8
+	11  cd less_8
+# Создали функцию для вывода имени пользваотеля 3 раза(см.фото1)
+	16  function name() { numb=$1; for n in $(seq $numb); do echo $USER; done; }
+	17  name 3
+# Создали цикл внутри bash-скрипта(см.фото2)
+	20  nano while.sh
+	21  chmod +x *.sh
+#Создали автономную задачу с интервалом 10 минут(см фото 3-5)
+	49  nano test.txt
+	59  crontab --help
+	61  crontab -e
+	62  crontab -l

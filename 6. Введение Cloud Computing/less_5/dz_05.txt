@@ -1,0 +1,19 @@
+# Обновили apt и установили утилиты
+    1  sudo apt update
+    2  sudo apt install htop
+    3  sudo apt install tree
+# Создали несколько файлов для поиска
+    5  pwd
+    6  mkdir less_5
+    7  echo > less_5/1.py
+    8  echo > less_5/2.py
+    9  echo > less_5/3.py
+   10  echo > less_5/code.py
+#Поиск файлов по ключу(см фото):
+   11  find ./ -type f -name '*.py'
+#Написали код выводящий от 0 до 100 чисел
+   17  vim less_5/code.py
+#Подключили к одной AWS два терминала, в одном произвели запуск code.py в другом утилитой htop нашли по ключу python (см фото)
+   26  python3 less_5/code.py
+   27  htop
+   28  exit

@@ -1,0 +1,32 @@
+
+ HISTORY
+
+ vim hello.py
+ vim line.py
+ tree
+ cat hello.py line.py > result.py
+ tree
+ python3 result.py
+ history
+____________________________________________________________________________________
+
+
+ubuntu@ip-172-31-39-193:~/less_3$ vim hello.py
+ubuntu@ip-172-31-39-193:~/less_3$ vim line.py
+ubuntu@ip-172-31-39-193:~/less_3$ tree
+.
+├── hello.py
+└── line.py
+
+0 directories, 2 files
+ubuntu@ip-172-31-39-193:~/less_3$ cat hello.py line.py > result.py
+ubuntu@ip-172-31-39-193:~/less_3$ tree
+.
+├── hello.py
+├── line.py
+└── result.py
+
+0 directories, 3 files
+ubuntu@ip-172-31-39-193:~/less_3$ python3 result.py
+Hello world
+Linear regression

@@ -1,0 +1,21 @@
+    9  mkdir first
+   10  mkdir second
+   11  echo print(1) > first/first.py
+   12  echo "print(1)" > first/first.py
+   13  echo "print(2)" > second/second.py
+   14  ll
+   15  tree
+   16  cd first
+   17  tree
+   18  mv second/second.py first/
+   19  cd ..
+   20  mv second/second.py first/
+   21  rm -r second
+   22  cd first
+   23  ll
+   24  cd ..
+   25  mv first first_second
+   26  ll
+   27  rm -r first_second
+   28  ll
+   29  history

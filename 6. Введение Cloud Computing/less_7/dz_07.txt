@@ -1,0 +1,17 @@
+
+#  Создали файлы дял поиска  
+   14  echo 'print(1)' > less_7/hello.py
+   15  ll less_7
+   16  echo 'print('Time')' > less_7/time.py
+   17  echo TEST  > less_7/test.txt
+   18  ll less_7
+   19  echo 1  > less_7/1.txt
+# Найшли файлы начинающиеся на букву t (фото№1)
+   29  ls | grep '^t'
+# Найшли все файлы с расширением .py
+   30   ll less_7 | grep '\.py$'
+# В файлах нашли строки начинающие с print
+   31  grep  'print' less_7/hello.py  
+   32  grep  'print' less_7/time.py 
+# Вывели количество времени
+   36 uptime | sed 's/^.* up \+\(.\+\), \+[0-9]\+ \+user.*/\1/'
