@@ -1,7 +1,6 @@
-/*
- * 1. Пусть в таблице users поля created_at и updated_at оказались незаполненными. Заполните их текущими датой и временем.
- * 
- * */
+-- “Операторы, фильтрация, сортировка и ограничение”
+
+/* 1. Пусть в таблице users поля created_at и updated_at оказались незаполненными. Заполните их текущими датой и временем. */
 SELECT * FROM users;
 +----+--------------------+-------------+---------------------+---------------------+
 | id | name               | birthday_at | created_at          | updated_at          |
@@ -131,9 +130,41 @@ mysql> SELECT value FROM storehouses_products ORDER BY IF(value = 0,1,0), value;
 |     0 |
 +-------+
 
-/* 4.1 Подсчитайте средний возраст пользователей в таблице users
- * 
+/* 4.(по желанию) Из таблицы users необходимо извлечь пользователей, родившихся в августе и мае. 
+ * Месяцы заданы в виде списка английских названий ('may', 'august')
  * */
+
+select id, name, (select MONTHNAME(birthday_at)) as MONTH_NAME
+from users u 
+where MONTH(birthday_at) = 5 OR MONTH(birthday_at) = 8;
++----+--------------------+------------+
+| id | name               | MONTH_NAME |
++----+--------------------+------------+
+|  3 | Александр          | May        |
+|  6 | Мария              | August     |
++----+--------------------+------------+
+
+
+
+
+/* 5.(по желанию) Из таблицы catalogs извлекаются записи при помощи запроса. SELECT * FROM catalogs WHERE id IN (5, 1, 2); 
+ * Отсортируйте записи в порядке, заданном в списке IN.
+ * */
+
+SELECT *
+FROM catalogs WHERE id IN (5, 1, 2) ORDER BY FIELD(id,5,1,2);
+
++----+-------------------------------------+
+| id | name                                |
++----+-------------------------------------+
+|  5 | Оперативная память                  |
+|  1 | Процессоры                          |
+|  2 | Материнские платы                   |
++----+-------------------------------------+
+
+-- "Агрегация данных"
+
+/* 1 Подсчитайте средний возраст пользователей в таблице users*/
 mysql> SELECT
     -> name,
     -> TIMESTAMPDIFF(Year,birthday_at,NOW()) AS age
@@ -158,14 +189,11 @@ mysql> SELECT  AVG(TIMESTAMPDIFF(Year,birthday_at,NOW())) as age from  users;
 | 30.0000 |
 +---------+
 
-/* 4.2 Подсчитайте количество дней рождения, 
- *которые приходятся на каждый из дней недели. 
- *Следует учесть, что необходимы дни недели текущего года, а не года рождения.
- * */
+/* 2 Подсчитайте количество дней рождения, которые приходятся на каждый из дней недели. 
+ *Следует учесть, что необходимы дни недели текущего года, а не года рождения.*/
 
-
-mysql> select DATE_FORMAT(date(concat_ws('-', year(now()), month(birthday_at), day(birthday_at))),'%W') as day_in_week, 
-count(*) as total
+mysql> SELECT DATE_FORMAT(DATE(CONCAT_WS('-', YEAR(NOW()), MONTH(birthday_at), DAY(birthday_at))),'%W') AS day_in_week, 
+COUNT(*) AS total
 FROM users 
 GROUP BY day_in_week DESC ;
 
@@ -180,7 +208,27 @@ GROUP BY day_in_week DESC ;
 | Saturday    |     1 |
 +-------------+-------+
 
-/**/
+/* 3. (по желанию) Подсчитайте произведение чисел в столбце таблицы*/
 
+drop table if exists numbers;
+create table numbers(
+	value INT
+);
 
+insert into numbers (value) values (1),(2),(3),(4);
+select * from numbers
++-------+
+| value |
++-------+
+|     1 |
+|     2 |
+|     3 |
+|     4 |
++-------+
 
+select ROUND(exp(SUM(log(value)))) as _RESULT_ from numbers n 
++----------+
+| _RESULT_ |
++----------+
+|       24 |
++----------+
