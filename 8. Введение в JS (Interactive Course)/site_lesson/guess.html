@@ -8,7 +8,7 @@
 
 		var answer = parseInt(Math.random() * 100);
 		var tryCount = 0;
-		var maxTryCount = 3;
+		var maxTryCount = 5;
 		var count_player = 0;
 		var player_numb = 1;
 
@@ -38,7 +38,7 @@
 		function guess(){
 			var userAnswer = readInt();
 			if (count_player == 1){
-				alert(answer)
+				// alert(answer)
 				tryCount++;
 				if(userAnswer == answer){
 					write("<b>Поздравляю, вы угадали!</b>");
@@ -54,7 +54,7 @@
 					write("Вы ввели слишком маленькое число<br>Попробуйте еще раз. Введите число от 1 до 100");				
 				}
 			}else if (count_player == 2){
-				alert(answer)
+				// alert(answer)
 				if(userAnswer == answer){
 					write("<b>Поздравляю игрока № </b> " + player_numb +" .<br><b>Вы угадали число!</b>");
 					hide("button");

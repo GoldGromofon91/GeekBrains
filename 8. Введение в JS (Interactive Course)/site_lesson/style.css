@@ -87,7 +87,7 @@ body {
     width: 671px;
     background-color: #ffffff;
     float: right;
-    padding: 49px 48px 51px 76px;
+    padding: 25px 34px 51px 76px;
     margin-bottom: 150px;
 }
 
@@ -96,7 +96,6 @@ body {
     font-size: 20px;
     font-weight: 100;
     text-align: left;
-    margin-bottom: 31px;
 }
 
 .content .box_text a  {
@@ -105,7 +104,6 @@ body {
     font-weight: 100;
     text-align: center;
     text-decoration: none;
-    padding-right:30px;
 }
 
 
