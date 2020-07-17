@@ -30,9 +30,9 @@ CREATE TABLE profiles (
 );
 
 -- 1 to M
-DROP TABLE IF EXISTS massange;
-CREATE TABLE massange (
-	massange_id BIGINT UNSIGNED NOT NULL UNIQUE,
+DROP TABLE IF EXISTS message;
+CREATE TABLE message (
+	message_id BIGINT UNSIGNED NOT NULL UNIQUE,
 	from_user_id BIGINT UNSIGNED NOT NULL,
 	to_user_id BIGINT UNSIGNED NOT NULL,
 	massange_body TEXT,
@@ -67,6 +67,7 @@ CREATE TABLE community (
 	INDEX community_name_idx(community_name),
 	FOREIGN KEY (community_admin_id) REFERENCES users(id)	
 );
+
 -- создаем доп.таблицу с у-мя полями внешние ключи которой связывают две разные таблицы users и community
 DROP TABLE IF EXISTS user_community; 
 CREATE TABLE user_community (
@@ -96,11 +97,11 @@ CREATE TABLE content (
 	status_likes ENUM ('like','None'),
 	created_at DATETIME DEFAULT NOW(),
 	updated_at DATETIME ON UPDATE NOW(), 
-	-- Поля для хранения данных
+	-- *Поля для хранения данных
 	filename VARCHAR(255),
-	-- file blob,  способ хранения данных в формате байтов  	
+	-- file blob,  *способ хранения данных в формате байтов  	
     size INT,
-	metadata JSON, -- способ хранения данных в файле json формата, представляющим из себя коллецию ключ:значение
+	--metadata JSON, -- *способ хранения данных в файле json формата, представляющим из себя коллецию ключ:значение
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (media_type_id) REFERENCES media_type(id)
 );
@@ -108,14 +109,13 @@ CREATE TABLE content (
 DROP TABLE IF EXISTS content_like; 
 CREATE TABLE content_like (
 	id SERIAL,
-	user_id BIGINT UNSIGNED NOT NULL, -- кто поставил лайке
-	media_id BIGINT UNSIGNED NOT NULL, -- чему поставили лайк
-	created_at DATETIME DEFAULT NOW(), -- когда
+	user_id BIGINT UNSIGNED NOT NULL, -- *кто поставил лайки
+	media_id BIGINT UNSIGNED NOT NULL, -- *чему поставили лайк
+	created_at DATETIME DEFAULT NOW(), -- *когда
 	
 	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (media_id) REFERENCES content(id)
 );
-
 
 DROP TABLE IF EXISTS photo_albums;
 CREATE TABLE photo_albums (
@@ -135,7 +135,6 @@ CREATE TABLE `photos` (
 	FOREIGN KEY (album_id) REFERENCES photo_albums(id),
     FOREIGN KEY (media_id) REFERENCES content(id)
 );
-
 
 ALTER TABLE profiles 
 ADD CONSTRAINT fk_foto_user_inprofile 
@@ -171,6 +170,4 @@ CREATE TABLE `user_song` (
 	FOREIGN KEY (album_id) REFERENCES song_albums(id),
     FOREIGN KEY (media_id) REFERENCES content(id)
 );
-
-
 

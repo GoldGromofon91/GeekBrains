@@ -66,7 +66,7 @@ mysql sample
 >\q;
 /*Создайте дамп единственной таблицы help_keyword базы данных mysql. 
  Причем добейтесь того, чтобы дамп содержал только первые 100 строк таблицы.*/
-mysqldump --were='true limil 100' mysql help_keyword > ~/Descktop/1/help_keyword.sql
+mysqldump 
 mysql 
 > CREATE DATABASE key_;
 >SHOW DATABASES;
