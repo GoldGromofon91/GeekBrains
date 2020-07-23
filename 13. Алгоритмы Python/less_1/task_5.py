@@ -104,16 +104,6 @@ def create_N_obj(count_obj):
 
 	return plates_list
 
-
-
-	# for idx in range(len(plates_list)):
-	# 	if plates_list[idx].size() <= lenght_stack_max:
-	# 		while plates_list[idx].size() < :
-	# 			plates_list[idx].add_el('Стопка {}. Тарелка {}'.format(i))
-	# 	else:
-	# 		continue
-
-
 if __name__ == '__main__':
 	test = create_N_obj(20)
 	print('Переменная test: {},\n Длина: {}\n Содержит в себе:\n {}'.format(type(test), len(test),test))
