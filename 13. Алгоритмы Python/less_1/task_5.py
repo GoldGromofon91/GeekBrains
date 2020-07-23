@@ -56,30 +56,29 @@ class PlatesClass:
 		return len(self.some_list)
 
 
+def create_N_obj(size_stack):
+	PlC_OBJ.clear()
+	PlC_OBJ_2.clear()
+	lenght = 1 
+	while lenght <= size_stack //2 :
+		PlC_OBJ.add_el('Стопка 1. Тарелка {}'.format(lenght))
+		lenght = lenght + 1 
+	else:
+		for i in range(size_stack - (size_stack //2)):
+			PlC_OBJ_2.add_el('Стопка 2. Тарелка {}'.format(i+1))
+	return 'Заполнены'	
+
 if __name__ == '__main__':
 	PlC_OBJ = PlatesClass()
 	PlC_OBJ_2 = PlatesClass()
 
-	# Проверяем что стек пустой
-	PlC_OBJ.clear()
-	PlC_OBJ_2.clear()
-	lenght = 1
-
-	while lenght < 6 :
-		PlC_OBJ.add_el('Стопка 1. Тарелка {}'.format(lenght))
-		lenght = lenght + 1 
-	else:
-		print('Стопка 1 заполнена: Заполняем стопку 2')
-		for i in range(6,11):
-			PlC_OBJ_2.add_el('Стопка 2. Тарелка {}'.format(i))
-	
+	print(create_N_obj(12))
 	PlC_OBJ.all()
 	PlC_OBJ_2.all()
-
-
-
-
-
+	print('=' * 40)
+	print(create_N_obj(20))
+	PlC_OBJ.all()
+	PlC_OBJ_2.all()
 
 
 
