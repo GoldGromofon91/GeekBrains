@@ -58,22 +58,36 @@ class PlatesClass:
 
 if __name__ == '__main__':
 	PlC_OBJ = PlatesClass()
+	PlC_OBJ_2 = PlatesClass()
 
 	# Проверяем что стек пустой
 	PlC_OBJ.clear()
-	print(PlC_OBJ.is_empty())
-	print(PlC_OBJ.size())
+	PlC_OBJ_2.clear()
+	lenght = 1
 
-	PlC_OBJ.add_el('Тарелка 1')
-	PlC_OBJ.add_el('Тарелка 2')
-	PlC_OBJ.add_el('Тарелка 3')
-	PlC_OBJ.add_el('Тарелка 4')
-	PlC_OBJ.add_el('Тарелка 5')
+	while lenght < 6 :
+		PlC_OBJ.add_el('Стопка 1. Тарелка {}'.format(lenght))
+		lenght = lenght + 1 
+	else:
+		print('Стопка 1 заполнена: Заполняем стопку 2')
+		for i in range(6,11):
+			PlC_OBJ_2.add_el('Стопка 2. Тарелка {}'.format(i))
 	
 	PlC_OBJ.all()
-	print('Последний элемент - {}'.format(PlC_OBJ.get_last_val()))
+	PlC_OBJ_2.all()
 
-	PlC_OBJ.get_val(3)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
