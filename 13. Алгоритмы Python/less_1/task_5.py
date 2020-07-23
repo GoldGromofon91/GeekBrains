@@ -55,8 +55,9 @@ class PlatesClass:
 	def size(self):
 		return len(self.some_list)
 
-
-def create_N_obj(size_stack):
+"""
+Решение 1.Данная функция разбивает элементы только по двум стопкам в равном количестве
+def create_obj(size_stack):
 	PlC_OBJ.clear()
 	PlC_OBJ_2.clear()
 	lenght = 1 
@@ -67,22 +68,65 @@ def create_N_obj(size_stack):
 		for i in range(size_stack - (size_stack //2)):
 			PlC_OBJ_2.add_el('Стопка 2. Тарелка {}'.format(i+1))
 	return 'Заполнены'	
+"""
+# Решение 2.
+
+def create_N_stack(count_obj):
+	lenght_stack_max = 5
+	plates_list = []
+	integer = count_obj // lenght_stack_max
+	remainder = count_obj % lenght_stack_max
+	if (integer == 0) and (remainder != 0):
+		plates_list.append(PlatesClass())
+	elif (integer % 2 != 0) and (remainder == 0):
+		for i in range(integer):
+			plates_list.append(PlatesClass())
+	elif (integer % 2 == 0) and (remainder == 0):
+		for i in range(integer):
+			plates_list.append(PlatesClass())
+	else:
+		for i in range(integer + 1):
+			plates_list.append(PlatesClass())
+	return plates_list
+
+def create_N_obj(count_obj):
+	lenght_stack_max = 5
+	plates_list = create_N_stack(count_obj)
+	
+	while count_obj > 0:
+		for ind in range(len(plates_list)):
+			if plates_list[ind].is_empty():
+				for el in range(5):
+					plates_list[ind].add_el('Стопка№{}. Тарелка№{}'.format(ind + 1,el + 1))
+					count_obj = count_obj - 1
+			else:
+				continue
+
+	return plates_list
+
+
+
+	# for idx in range(len(plates_list)):
+	# 	if plates_list[idx].size() <= lenght_stack_max:
+	# 		while plates_list[idx].size() < :
+	# 			plates_list[idx].add_el('Стопка {}. Тарелка {}'.format(i))
+	# 	else:
+	# 		continue
+
 
 if __name__ == '__main__':
-	PlC_OBJ = PlatesClass()
-	PlC_OBJ_2 = PlatesClass()
+	test = create_N_obj(20)
+	print('Переменная test: {},\n Длина: {}\n Содержит в себе:\n {}'.format(type(test), len(test),test))
+	
+	obj_1 = test[0]
+	obj_2 = test[1]
+	obj_3 = test[2]
+	obj_4 = test[3]
 
-	print(create_N_obj(12))
-	PlC_OBJ.all()
-	PlC_OBJ_2.all()
-	print('=' * 40)
-	print(create_N_obj(20))
-	PlC_OBJ.all()
-	PlC_OBJ_2.all()
-
-
-
-
+	obj_1.all()
+	obj_2.all()
+	obj_3.all()
+	obj_4.all()
 
 
 
