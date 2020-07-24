@@ -34,7 +34,6 @@ firm_list = [
 	{'name':'Mail','cost':15089},
 	{'name':'Facebook','cost':18953},
 	{'name':'Yandex','cost':15321},
-	{'name':'Mail','cost':15275},
 	{'name':'Amazon','cost':19845}
 	]
 
@@ -51,16 +50,15 @@ for element in firm_list:								#O(2n^2)
 			print('{} - {}'.format(key,val))
 # !!! Сложность: 2n^2
 
-"""
-2. Решение 2.
-""
+#Решение 2
 
-
-
-
-
-
-
+res =[]
+for el in firm_list:	#O(n)
+	s = list(el.items())
+	res.append(s)
+res.sort(key=lambda i:i[1], reverse=True) # O(n)
+print(res[:3])
+#!!! Сложность O(n)
 
 
 
