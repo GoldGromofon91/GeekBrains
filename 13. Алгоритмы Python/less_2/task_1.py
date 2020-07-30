@@ -28,3 +28,36 @@
 Вы вместо трехзначного числа ввели строку (((. Исправьтесь
 Введите операцию (+, -, *, / или 0 для выхода):
 """
+
+
+def calculate_rec():
+	operand = '+-*/0'
+	usr_operand = input('Введите операцию (+, -, *, / или 0 для выхода): ')
+	if usr_operand == '0':
+		return print('See you later. Bye-Bye')
+	if usr_operand not in operand:
+		print('Ошибка')
+		return calculate_rec()
+	try:
+		usr_num1 = int(input('Введите первое число: '))
+		usr_num2 = int(input('Введите второе число: '))
+	except (TypeError, ValueError): 
+		print('Вы ввели не число. Исправьтесь')
+		return calculate_rec()
+	if usr_operand == '+':
+		total = usr_num1 + usr_num2
+		print(f'Результат: {total}')
+	elif usr_operand == '-':
+		total = usr_num1 - usr_num2
+		print(f'Результат: {total}')
+	elif usr_operand == '*':
+	 	total = usr_num1 * usr_num2
+	 	print(f'Результат: {total}')
+	elif usr_operand == '/':
+	 	try:
+	 		total = usr_num1 / usr_num2
+	 	except ZeroDivisionError as e:
+	 		print(f'Error! {e}')
+	return calculate_rec()
+
+calculate_rec()
