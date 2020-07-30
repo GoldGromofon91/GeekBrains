@@ -52,12 +52,14 @@ def calculate_rec():
 		print(f'Результат: {total}')
 	elif usr_operand == '*':
 	 	total = usr_num1 * usr_num2
-	 	print(f'Результат: {total}')
+	 	print(f'Результат: {round(total,2)}')
 	elif usr_operand == '/':
 	 	try:
 	 		total = usr_num1 / usr_num2
 	 	except ZeroDivisionError as e:
 	 		print(f'Error! {e}')
+	 	else:
+	 		print(f'Результат: {round(total,2)}')
 	return calculate_rec()
 
 calculate_rec()
