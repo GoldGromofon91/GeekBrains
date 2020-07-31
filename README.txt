@@ -12,3 +12,4 @@
   -----> 10. Linux
   -----> 11. Web-безопаность (Interactive Course) 
   -----> 12. MySQL
+  -----> 13. Алгоритмы Python
