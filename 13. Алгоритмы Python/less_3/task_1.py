@@ -37,7 +37,7 @@ create_list()
 """
 @time_decorator
 def create_dict():
-	new_dict=[{'id':random.randint(1,100)} for el in range(1,21)]
+	new_dict=[{'id'+str(el):random.randint(1,100)} for el in range(1,21)]
 	print(new_dict)
 	return new_dict
 
