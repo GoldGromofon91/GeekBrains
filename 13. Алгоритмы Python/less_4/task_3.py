@@ -57,6 +57,13 @@ def revers_3(enter_num):
     return revers_num
 
 
+def run_cprof():
+    revers(1234563)
+    revers_mem(1234563)
+    revers_2(1234563)
+    revers_3(1234563)
+
+
 print(f'Func reverse_1:\n{timeit("revers(1234563)", setup="from __main__ import revers", number=100000)}')
 print(f'Func reverse_mem:\n{timeit("revers_mem(1234563)", setup="from __main__ import revers_mem", number=100000)}')
 print(f'Func reverse_2:\n{timeit("revers_2(1234563)", setup="from __main__ import revers_2", number=100000)}')
@@ -66,6 +73,7 @@ cProfile.run('revers(123456)')
 cProfile.run('revers_mem(123456)')
 cProfile.run('revers_2(123456)')
 cProfile.run('revers_3(123456)')
+cProfile.run('run_cprof')
 
 """
 !!!. По результатам замеров видно, что самая медленная функция - reverse (Рекурсивная), ее сложность Факториальная.
