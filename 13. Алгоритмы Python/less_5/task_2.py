@@ -11,8 +11,10 @@
 Также попробуйте решить задачу вообще без collections и применить только ваши знания по ООП
 (в частности по перегрузке методов)
 """
+#C использованием модуля collections
 
 
+# Решение c ООП
 class Clc_16x:
     def __init__(self, num):
         self.num = num
@@ -22,16 +24,16 @@ class Clc_16x:
 
     def __add__(self, other):
         summ = hex(int(self.num, 16) + int(other.num,16))
-        for el in summ:
-        	self.sum_res.append(el.upper())
+        for el in range(2,len(summ)):
+        	self.sum_res.append(summ[el].upper())
         return self.sum_res
 
 
     def __mul__(self, other):
         multx = hex(int(self.num, 16) * int(other.num, 16))
         print()
-        for el in multx:
-        	self.mul_res.append(el.upper())
+        for el in range(2,len(multx)):
+        	self.mul_res.append(multx[el].upper())
         return self.mul_res
 
 
