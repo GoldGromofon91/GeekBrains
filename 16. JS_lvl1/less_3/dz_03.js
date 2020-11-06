@@ -31,19 +31,13 @@ a) Организовать такой массив для хранения то
 b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
  */
 console.log('Task_2');
-let bin = [['prod_1','23500'],['prod_2','11300'],['prod_3','11230']];
-let bin_1 = [['prod_1','23500'],['prod_2','11300'],['prod_3','11230'],['prod_4','10000']];
+let bin = [['prod_1',23500],['prod_2',11300],['prod_3',11230]];
+let bin_1 = [['prod_1',23500],['prod_2',11300],['prod_3',11230],['prod_4',10000]];
 function countBasketPrice(user_bin){
     let result = 0;
     let resSum = 0;
     for (let i =0; i < user_bin.length;i++){
-        for (let sum = 0; sum < user_bin[i].length;sum++){
-            resSum = +user_bin[i][sum];
-            if (isNaN(resSum)) continue;
-            else {
-                result += resSum;
-            }
-        }
+        result +=user_bin[i][1];
     }
     return result;    
 }
@@ -51,16 +45,17 @@ console.log('User_1_bin: ');
 console.log(bin);
 console.log('User_2_bin: ');
 console.log(bin_1);
-console.log('Total cost ' + countBasketPrice(bin));
-console.log('Total cost ' + countBasketPrice(bin_1));
+console.log('Total cost User_1_bin ' + countBasketPrice(bin));
+console.log('Total cost User_2_bin ' + countBasketPrice(bin_1));
 
 
 // Задание 3
 // *Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла.
 console.log('Task_3');
 function withoutBody(){
-    let wbArray = [];
-    for (let wb = 0; wb < 10; console.log(wb), wb++);
+    let wbStr ='';
+    for (let wb = 0; wb < 10; wbStr+=wb,wb++);
+    console.log(wbStr);
 }
 
 withoutBody();
