@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.conteiner {
+    margin-right: 50px;
+    margin-left: 50px;
+    margin: 0 auto;
+}
+
+.navbar_ {
+    width: 100%;
+}
+
+
+/* Content*/
+
+.catalog_goods {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.item_goods {
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.button_items {
+    margin-bottom: 5px;
+}
+
+.bin {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
