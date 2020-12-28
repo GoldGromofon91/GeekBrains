@@ -25,7 +25,7 @@ const catalogUser = {
         itemConteiner: 'item_goods',
         buttonBuyGoods: 'button_items',
     },
-
+    userBin:{},
     dataObj: [
         {
             idGoods: 123,
@@ -56,18 +56,20 @@ const catalogUser = {
             quantity: 3,
         },
         {
-            idGoods: 123,
+            idGoods: 141,
             imgSrc: 'img/goods.png',
             nameGoods: 'Goods3',
             priceGoods: 5500,
             quantity: 1,
         }],
 
-    initCatalog() {
+    initCatalog(userBin) {
+        this.userBin = userBin;
         this.dataObj.forEach(obj => {
             this.renderElement(obj);
         })
-        binUser.init();
+        this.userBin.initBin(this.dataObj);
+        this.clickHandler();
     },
 
     renderElement(obj) {
@@ -77,8 +79,19 @@ const catalogUser = {
                     <img src="${obj['imgSrc']}" alt="">
                     <h4>${obj['nameGoods']}</h4>
                     <p>${obj['priceGoods']}</p>
-                    <button class="${this.settingCatalog.buttonBuyGoods}">Buy</button>
+                    <button class="${this.settingCatalog.buttonBuyGoods}" data-id_product="${obj['idGoods']}">Buy</button>
                   </div>`);
+    },
+
+    clickHandler() {
+        const workBlock = document.querySelector(this.settingCatalog.workEnviroment);
+        workBlock.addEventListener('click', event => this.addToBin(event));
+    },
+
+    addToBin(event) {
+        if (!event.target.classList.contains(this.settingCatalog.buttonBuyGoods)) return;
+        const id_prod = +event.target.dataset.id_product;
+        this.userBin.addToBasket(id_prod);
     },
 }
 const binUser ={
@@ -89,48 +102,72 @@ const binUser ={
         elementBinOl: 'ol_block_bin',
         elementBinLi: 'li_block_bin',
         binBlockCost: 'block_result_price',
-        binElement: [],
     },
+    catalogList: [],
+    binElement: [],
 
-
-    init() {
+    initBin(catalogUser) {
+        this.catalogList = catalogUser;
+        console.log(this.catalogList);
         this.renderBin();
     },
 
-
     renderBin() {
-        const parentBinBlock = document.querySelector(this.settingsBin.parentBlock);
-        return parentBinBlock.insertAdjacentHTML('beforeend',
-            `<div class="${this.settingsBin.binBlockText}">
-                      <ol class="${this.settingsBin.elementBinOl}">
-                          <li class="${this.settingsBin.elementBinLi}"></li>
-                      </ol>
-                  </div>
-                  <div class="${this.settingsBin.binBlockCost}">
-                      <img src="${this.settingsBin.imgBinSrc}" alt="">
-                      <p></p>
-                  </div>`);
+        if (this.binElement.length > 0) {
+            this.renderFullBin();
+        }else {
+            this.renderEmptyBin();
+        }
+    },
+
+    renderEmptyBin() {
+        document.querySelector(`.${this.settingsBin.binBlockText}`).insertAdjacentHTML('beforeend',
+            `<p>Cart is empty</p>`);
+        document.querySelector(`.${this.settingsBin.binBlockCost}`).insertAdjacentHTML('beforeend',
+            `<img src="${this.settingsBin.imgBinSrc}" alt="">
+             <p>Result Cost: 0 </p>`)
+    },
+
+    renderFullBin() {
+        const blockBinText = document.querySelector(`.${this.settingsBin.binBlockText}`);
+        blockBinText.innerHTML = '';
+
+        const blockBinCost = document.querySelector(`.${this.settingsBin.binBlockCost}`);
+        blockBinCost.innerHTML = '';
+
+        this.binElement.forEach(item => {
+            blockBinText.insertAdjacentHTML('beforeend', this.renderCartItem(item));
+        });
+        blockBinCost.insertAdjacentHTML('beforeend',
+            `<img src="${this.settingsBin.imgBinSrc}" alt="">
+             <p>Result Cost: ${this.getResultCost()} </p>`)
+    },
+
+    renderCartItem(item) {
+        return `<p>${item.nameGoods} ${item.priceGoods}</p>`;
+    },
+
+    getResultCost(id_product) {
+        let result = 0;
+        console.log(this.binElement)
+        this.binElement.forEach(element => {result+= element.priceGoods})
+        return result;
+
+    },
+    addToBasket(id_product) {
+        const product = this.findProduct(id_product);
+        if (product) {
+            this.binElement.push({...product});
+            this.renderBin();
+        }else {
+            alert('Ошибка добавления!');
+        }
+    },
+
+    findProduct(id_product) {
+        return this.catalogList.find(product => product.idGoods === id_product);
     },
 }
-//
 
-//     initWorkBlock() {
-//         document.querySelectorAll(this.settingCatalog.buttonBuyGoods).forEach(
-//             element => {
-//                 // console.log(element);
-//             element.addEventListener('click', event => {
-//                 this.checkClickUser(event)
-//             })
-//         });
-//     },
-//     checkClickUser(event) {
-//         if(event.target.tagName !== 'BUTTON') return;
-//         this.getParam(event);
-//
-//     },
-//
-//     getParam(event) {
-//         console.log(event)
-//     },
-// };
-catalogUser.initCatalog()
+catalogUser.initCatalog(binUser)
+
