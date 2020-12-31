@@ -326,7 +326,7 @@ const game = {
             this.snake.growUp();
             this.userScore.addScore();
             this.food.setCoordinates(this.getRandomFreeCoordinates());
-
+            this.barrier.setCoordinates(this.getRandomFreeCoordinates());
             if (this.isGameWon()) this.finish();
         }else if (this.barrier.isPoint(this.snake.getNextStepHeadPoint())) {
             this.finish();
