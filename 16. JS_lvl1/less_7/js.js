@@ -446,4 +446,4 @@ const game = {
     },
 };
 
-game.init({speed: 5});
+window.onload = game.init({speed: 5});

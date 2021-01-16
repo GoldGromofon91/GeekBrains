@@ -47,3 +47,16 @@ td.cell{
 .disabled:hover{
     background: #7c7c7c;
 }
+
+#user_score_block {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    color: rebeccapurple;
+    text-transform: uppercase;
+    font-family: Andale Mono;
+    font-size: 20px;
+}
+#user_score_block>p{
+    padding-right: 10px;
+}
