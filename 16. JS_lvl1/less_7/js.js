@@ -117,7 +117,7 @@ const snake = {
     direction: null,
     lastStepDirection: null,
     maxPositionX: null,
-    maxPositionY:null,
+    maxPositionY: null,
 
     init(startBody, direction,mX,mY) {
         this.body = startBody;
