@@ -89,7 +89,7 @@ a:hover {
 .index_first_slide_content {
     min-height: 500px;
     min-width: 700px;
-    background-image: url('/static/img/background.jpeg');
+    background-image: url("/static/img/background.jpeg");
     background-repeat: no-repeat;
     background-size: 100%;
     position: relative;
@@ -188,16 +188,13 @@ a:hover {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    /*display: inline-block;*/
 }
 
 .index_second_slide_block_1 {
-    /*float: left;*/
     margin-top: 20px;
     background-color: #cfffd4;
     width: 350px;
     height: 400px;
-    /*margin-right: 52px;*/
     border-radius: 5%;
 }
 
@@ -222,17 +219,14 @@ a:hover {
 }
 
 .index_second_slide_block_2 {
-    /*float: left;*/
     margin-top: 20px;
     border-radius: 5%;
     background-color: #cfffd4;
     width: 350px;
     height: 400px;
-    /*margin-right: 52px;*/
 }
 
 .index_second_slide_block_3 {
-    /*float: left;*/
     margin-top: 20px;
     border-radius: 5%;
     background-color: #cfffd4;
@@ -240,7 +234,9 @@ a:hover {
     height: 400px;
     margin-bottom: 100px;
 }
-
+.house_first_slide {
+    margin: 5px 100px;
+}
 
 /*Третий слайд*/
 
@@ -257,14 +253,10 @@ a:hover {
     margin-bottom: 35px;
 }
 
-.content_third_slide {
-    /*position: relative;*/
-}
-
 .third_slide_block_1 {
     height: 400px;
     min-width: 100%;
-    background-image: url('/static/img/third_slide_block1.png');
+    background-image: url("/static/img/third_slide_block1.png");
     background-size: 100%;
     background-repeat: no-repeat;
     border-radius: 5%;
@@ -281,12 +273,9 @@ a:hover {
 }
 
 .third_slide_block_2 {
-    /*float: left;*/
     height: 450px;
     width: 400px;
-    /*	margin-left: 75px;
-    margin-right: 150px;*/
-    background-image: url('/static/img/third_slide_block2.jpg');
+    background-image: url("/static/img/third_slide_block2.jpg");
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
     background-size: 100%;
     border-radius: 5%;
@@ -296,8 +285,7 @@ a:hover {
 .third_slide_block_3 {
     height: 300px;
     width: 400px;
-    /*margin-left: 75px;*/
-    background-image: url('/static/img/third_slide_block3.png');
+    background-image: url("/static/img/third_slide_block3.png");
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
     background-size: 100%;
     border-radius: 5%;
@@ -640,7 +628,7 @@ a:hover {
 }
 .table_fruit {
     border: 1px solid #000;
-    /*border-spacing: 1px;*/
+
     
     text-align: center;
     margin: auto;
@@ -650,8 +638,7 @@ a:hover {
     border: 1px solid black;
     height: 50px;
     width: 300px;
-    /*	padding-left: 10px;
-	text-align: center;*/
+
     
     vertical-align: middle;
     text-align: center;
@@ -712,4 +699,7 @@ a:hover {
     height: 300px;
     margin-left: auto;
     margin-right: auto;
+}
+.footer_mask {
+    height: 40px;
 }
