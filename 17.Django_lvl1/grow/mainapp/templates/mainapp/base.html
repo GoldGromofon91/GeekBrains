@@ -2,64 +2,64 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ title_page|default:'GrowYourself.ru'|upper }}</title>
-        <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %}">
-    </head>
-    <body>
-        <div class="container">
-            {% block content %}
-            {% endblock %}
-        </div>
-        <div class="footer">
-                <div class="footer_buy">
-                    <h3 class="title_footer_buy">To be a part off our community?</h3><br>
-                    <div class="footer_flex_box">
-                        <div class="form_by">
-                            Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Sequi fugiat rem incidunt possimus. Eos ex, deleniti vero iusto hic quisquam.<br>
-                            <input type="text" name="Email" placeholder="email">
-                            <button class="but_push"><span>Go!</span></button>
-                        </div>
-                        <div class="somebody_in_footer">
-                            <img src="{% static 'img/pngegg.png' %}" alt="" width="350" height="350">
-                        </div>
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title_page|default:'GrowYourself.ru'|upper }}</title>
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="footer">
+        <div class="footer_buy">
+            <h3 class="title_footer_buy">To be a part off our community?</h3><br>
+            <div class="footer_flex_box">
+                <div class="form_by">
+                    Lorem ipsum dolor, sit amet consectetur, adipisicing elit. Sequi fugiat rem incidunt possimus. Eos ex, deleniti vero iusto hic quisquam.<br>
+                    <input type="text" name="Email" placeholder="email">
+                    <button class="but_push"><span>Go!</span></button>
                 </div>
-                <div class="footer_contact_us">
-                    <h3 class="title_footer_contacts">Contact us:</h3>
-                    <div class="footer_contacts_flex_block">
-                        <div class="block_">
-                            <h4 class="title_into_block_">Social club</h4>
-                            <ul class="menu_into_block">
-                                <li>in App: <a href="#">iOS</a>, <a href="#">Android</a></li>
-                                <li>Telegram <a href="#">{{ item.telegram }}</a></li>
-                                <li>Instagram <a href="#">@Grow_up</a></li>
-                                <li>VK <a href="#">@Grow_up</a></li>
-                                <li>Facebook <a href="#">@Grow_up</a></li>
-                                </ul>
-                        </div>
-                        <div class="block_">
-                            <h4 class="title_into_block_">Phone's</h4>
-                            <ul class="menu_into_block">
-                                <li>Phone <a href="#">+7(921)-xxx-xx-xx</a></li>
-                                <li>Phone <a href="#">+7(812)-xxx-xx-xx</a></li>
-                            </ul>
-                        </div>
-                        <div class="block_">
-                            <h4 class="title_into_block_">On-line Service</h4>
-                            <ul class="menu_into_block">
-                                <li>On-line <a href="/contacts/">Send Us</a></li>
-                                <li>Email <a href="#">grow_yourself@gmail.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="footer_right_protect">
-                        <p>"All rights reserved"</p>
-                    </div>
+                <div class="somebody_in_footer">
+                            <img src="{% static 'img/pngegg.png' %}" alt="" width="350" height="350">
                 </div>
             </div>
-    </body>
+        </div>
+        <div class="footer_contact_us">
+            <h3 class="title_footer_contacts">Contact us:</h3>
+            <div class="footer_contacts_flex_block">
+                <div class="block_">
+                    <h4 class="title_into_block_">Social club</h4>
+                    <ul class="menu_into_block">
+                        <li>in App: <a href="#">iOS</a>, <a href="#">Android</a></li>
+                        <li>Telegram <a href="#">{{ item.telegram }}</a></li>
+                        <li>Instagram <a href="#">@Grow_up</a></li>
+                        <li>VK <a href="#">@Grow_up</a></li>
+                        <li>Facebook <a href="#">@Grow_up</a></li>
+                    </ul>
+                </div>
+                <div class="block_">
+                    <h4 class="title_into_block_">Phone's</h4>
+                    <ul class="menu_into_block">
+                        <li>Phone <a href="#">+7(921)-xxx-xx-xx</a></li>
+                        <li>Phone <a href="#">+7(812)-xxx-xx-xx</a></li>
+                    </ul>
+                </div>
+                <div class="block_">
+                    <h4 class="title_into_block_">On-line Service</h4>
+                    <ul class="menu_into_block">
+                        <li>On-line <a href="/contacts/">Send Us</a></li>
+                        <li>Email <a href="#">grow_yourself@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="footer_right_protect">
+                <p>"All rights reserved"</p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

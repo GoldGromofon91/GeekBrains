@@ -17,11 +17,17 @@ from django.contrib import admin
 from django.urls import path
 
 from mainapp import views as mainapp
+from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls import include
+
 
 urlpatterns = [
     path('', mainapp.index, name='index'),
     path('contacts/', mainapp.contacts, name='contacts'),
-    path('growhouse/', mainapp.house_grow, name='growhouse'),
-    path('avo/', mainapp.house_grow_products, name='id'),
+    path('category/', include('mainapp.urls', namespace='category')),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

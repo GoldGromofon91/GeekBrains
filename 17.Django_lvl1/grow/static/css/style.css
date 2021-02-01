@@ -234,11 +234,13 @@ a:hover {
     height: 400px;
     margin-bottom: 100px;
 }
+
 .house_first_slide {
     margin: 5px 100px;
 }
 
-/*Третий слайд*/
+
+/*Third слайд*/
 
 .index_third_slide {
     margin-left: 100px;
@@ -395,11 +397,6 @@ a:hover {
     justify-content: flex-end;
 }
 
-.footer_contact_us {
-    /*	padding-top: 80px;
-    padding-bottom: 80px;*/
-}
-
 .block_ {
     min-width: 400px;
     min-height: 250px;
@@ -423,12 +420,11 @@ a:hover {
     text-transform: uppercase;
 }
 
-
-}
 .menu_into_block {
     padding-top: 10px;
     padding-left: 20px;
 }
+
 .footer_right_protect p {
     text-transform: uppercase;
     font-family: monospace;
@@ -436,11 +432,13 @@ a:hover {
     font-size: 20px;
     color: #cfdbff;
 }
+
 .footer_contact_us ul {
     list-style-type: none;
     font-size: 25px;
     color: #cfdbff;
 }
+
 .footer_right_protect {
     position: relative;
     font-size: 25px;
@@ -449,10 +447,13 @@ a:hover {
     color: #cfdbff;
 }
 
+
 /*Contacts*/
+
 .contacts_page_slide1 {
     margin: 5px 100px;
 }
+
 .contacs_banner {
     padding-top: 50px;
     height: 200px;
@@ -462,23 +463,25 @@ a:hover {
     text-align: center;
     color: #cfdbff;
 }
+
 .contacts_send_form {
     margin-top: 50px;
     height: 100%;
 }
+
 .send_form_flex_objs {
     flex-wrap: wrap;
     display: flex;
     justify-content: space-around;
 }
+
 .contacts_slide1_block1 {
     min-width: 500px;
-    /*border: 5px solid #cfdbff;*/
-    
     box-shadow: 0 0 5px 2px #cfdbff;
     color: #cfdbff;
     text-align: center;
 }
+
 .contacts_slide1_block1 img {
     width: 325px;
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
@@ -486,6 +489,7 @@ a:hover {
     margin-bottom: 50px;
     border-radius: 10px;
 }
+
 .contacts_slide1_block1 p {
     padding-left: 10px;
     padding-right: 10px;
@@ -494,23 +498,24 @@ a:hover {
     text-align: justify;
     padding-bottom: 20px;
 }
+
 .contacts_slide1_block2 {
     min-width: 500px;
     text-align: center;
-    /*float: right;*/
-    
     width: 500px;
     box-shadow: 0 0 5px 2px #cfdbff;
     font-family: monospace;
     text-transform: uppercase;
     font-weight: 100px;
 }
+
 .contacts_slide1_block2 input[type=text] {
     font-size: 40px;
     width: 465px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
 .contacts_slide1_block2 input[type=email] {
     font-size: 40px;
     width: 465px;
@@ -518,6 +523,7 @@ a:hover {
     margin-bottom: 15px;
     padding: 5px 10px;
 }
+
 .contacts_slide1_block2 select {
     height: 54px;
     width: 465px;
@@ -526,9 +532,11 @@ a:hover {
     margin-bottom: 15px;
     font-size: 30px;
 }
+
 .contacts_slide1_block2 select:active {
     font-size: 15px;
 }
+
 .contacts_slide1_block2 textarea {
     width: 465px;
     height: 200px;
@@ -536,31 +544,37 @@ a:hover {
     margin-bottom: 15px;
     font-size: 25px;
 }
+
 .contacts_slide1_block2 input[type=submit] {
     margin-bottom: 20px;
     font-size: 25px;
     padding: 10px 10px;
 }
+
 .contacts_slide1_block2 input[type=submit]:hover {
     opacity: 0.3;
 }
+
 .contacts_slide1_block3 {
     min-width: 500px;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-/*=====================================Теплица=======================================*/
+
+/*Growhouse*/
+.house_content {
+    margin-top: 20px;
+}
+
 .house_content li a {
-    /*text-decoration: none;*/
-    
     color: blue;
     font-size: 20px;
     font-family: "Мarker Felt", fantasy;
     font-style: italic;
 }
 
-/*Change quality img */
+
 .rep_pic {
     border-radius: 100px;
     height: 100px;
@@ -570,22 +584,26 @@ a:hover {
     margin-left: 10px;
     border: none;
 }
+
 .house_content li img:hover {
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
+
 .block_fr {
-    /*position: relative;*/
-    
     margin-bottom: 150px;
 }
+
 .list_fr li {
     color: black;
 }
+
 .list_fr li a {
     color: #654321;
 }
 
-/*-----------------------------Fruits pages---------------------------*/
+
+/*Fruits pages*/
+
 .head_fruits {
     margin-top: 20px;
     text-align: center;
@@ -593,32 +611,39 @@ a:hover {
     font-weight: 400;
     background: #eaeaea
 }
+
 .foto_fr {
     margin-top: 10px;
     float: left;
 }
+
 .text_fr {
     padding-left: 10px;
     overflow: hidden;
 }
+
 .text_big {
     position: relative;
     top: 10px;
     clear: both;
 }
 
-/*Стили для абзацев*/
+
+/*style text, paragraph*/
+
 .small_par {
     color: #484343;
     font-weight: 400;
     line-height: 24px;
     text-align: left;
 }
+
 .small_par:first-letter {
     font-family: Geneva, Arial, Helvetica, sans-serif;
     font-size: 40px;
     color: red;
 }
+
 .short_par {
     text-align: left;
     color: #707070;
@@ -626,28 +651,28 @@ a:hover {
     font-size: 14px;
     line-height: 16px;
 }
+
 .table_fruit {
     border: 1px solid #000;
-
-    
     text-align: center;
     margin: auto;
     border-collapse: collapse;
 }
+
 .table_fruit td {
     border: 1px solid black;
     height: 50px;
     width: 300px;
-
-    
     vertical-align: middle;
     text-align: center;
 }
+
 .character {
     list-style-type: none;
     font-style: italic;
     font-size: 20px;
 }
+
 .text_fr input {
     position: relative;
     left: 300px;
@@ -668,38 +693,42 @@ a:hover {
     -webkit-animation: pulsate 1.2s linear infinite;
     animation: pulsate 1.2s linear infinite;
 }
+
 .text_fr input:hover {
     -webkit-animation-play-state: paused;
     animation-play-state: paused;
     cursor: pointer;
 }
+
 .text_fr input:active {
     top: 1px;
     color: #fff;
     text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
     box-shadow: 0 -1px 3px rgba(0, 0, 0, .3), 0 1px 1px #fff, inset 0 1px 2px rgba(0, 0, 0, .8), inset 0 -1px 0 rgba(0, 0, 0, .05);
 }
+
 @-webkit-keyframes pulsate {
     50% {
         color: #fff;
         text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
     }
 }
+
 @keyframes pulsate {
     50% {
         color: #fff;
         text-shadow: 0 -1px rgba(0, 0, 0, .3), 0 0 5px #ffd, 0 0 8px #fff;
     }
 }
+
 .fig {
-    /*border-radius: 100px;*/
-    
     border-radius: 30px;
     width: 500px;
     height: 300px;
     margin-left: auto;
     margin-right: auto;
 }
+
 .footer_mask {
     height: 40px;
 }

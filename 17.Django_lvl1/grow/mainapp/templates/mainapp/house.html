@@ -2,29 +2,21 @@
 {% load static %}
 {% block content %}
     <div class="house_first_slide">
-            <!-- Меню -->
-            {% include 'mainapp/includes/main_topnav.html' %}
-            <!-- Контент -->
-            <div class="block_fr">
-                <h3 class="heading">Ваша теплица:</h3>
-                <div class="list_fr">
-                    <ol class="house_content">
-                        <li><a href="#" title="Cсылка заглушка">Avocado(осталось дней)</a>
-                            <a href="{% url 'id' %}"><img class="rep_pic" src="{% static 'img/avo_.png' %}" alt="Ваше Авокадо" title="Описание Авокадо">
-                            </a>
-                        </li>
+        <!-- Меню -->
+        {% include 'mainapp/includes/main_topnav.html' %}
+        <!-- Контент -->
+        <div class="block_fr">
+            <h3 class="heading">Ваша теплица:</h3>
+            <div class="list_fr">
+                <ol class="house_content">
+                    {% for el_cat in category %}
                         <li>
-                            <a href="#" title="Cсылка заглушка">Strawberry(осталось дней)</a>
-                            <a href="#"><img class="rep_pic" src="/static/img/klub_.png" alt="Ваше Клубника" title="Описание Клубники">
-                            </a>
+                            <p>{{ el_cat.name|upper }}</p>
+                            <a href="#"><img class="rep_pic" src="{% static 'img/avo_.png' %}" alt="Ваше Авокадо" title="Описание Авокадо"></a>
                         </li>
-                        <li>
-                            <a href="#" title="Cсылка заглушка">Orange tree(осталось дней)</a>
-                            <a href="#"><img class="rep_pic" src="/static/img/orange_.jpg" alt="Ваше Клубника" title="Описание апельсина">
-                            </a>
-                        </li>
-                    </ol>
-                </div>
+                    {% endfor %}
+                </ol>
             </div>
         </div>
+    </div>
 {% endblock %}
