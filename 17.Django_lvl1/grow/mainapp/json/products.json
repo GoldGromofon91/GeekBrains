@@ -1,0 +1,74 @@
+[
+    {
+        "category": "системы роста",
+        "name": "ultra box",
+        "image": "prod_img/prod1.jpg",
+        "small_desc": "Ultra Box - система роста специально подобранная под ваш дизайн",
+        "full_desc": "Ultra Box - готовое решение для культивирования домашних экзотических фруктов и растений",
+        "price": "444444.44",
+        "count": "3"
+    },
+    {
+        "category": "системы роста",
+        "name": "small box",
+        "image": "prod_img/prod1.jpg",
+        "small_desc": "Small Box - система роста специально подобранная под ваш дизайн",
+        "full_desc": "Small Box - готовое решение для культивирования домашних экзотических фруктов и растений",
+        "price": "255555.55",
+        "count": "5"
+    },
+    {
+        "category": "семена растений",
+        "name": "авокадо",
+        "image": "prod_img/prod2.jpg",
+        "small_desc": "Short Description",
+        "full_desc": "Full Description",
+        "price": "200",
+        "count": "13"
+    },
+    {
+        "category": "семена растений",
+        "name": "драконий фрукт",
+        "image": "prod_img/prod3.jpg",
+        "small_desc": "Short Description",
+        "full_desc": "Full Description",
+        "price": "350",
+        "count": "10"
+    },
+    {
+        "category": "семена растений",
+        "name": "клубника",
+        "image": "prod_img/prod4.jpg",
+        "small_desc": "Short Description",
+        "full_desc": "Full Description",
+        "price": "150",
+        "count": "12"
+    },
+    {
+        "category": "семена растений",
+        "name": "апельсиновое дерево",
+        "image": "prod_img/prod5.jpg",
+        "small_desc": "Short Description",
+        "full_desc": "Full Description",
+        "price": "200",
+        "count": "2"
+    },
+    {
+        "category": "удобрения",
+        "name": "Удобрение 1",
+        "image": "prod_img/prod6.jpg",
+        "small_desc": "Short Description",
+        "full_desc": "Full Description",
+        "price": "12000",
+        "count": "4"
+    },
+    {
+        "category": "удобрения",
+        "name": "Удобрение 2",
+        "image": "prod_img/prod6.jpg",
+        "small_desc": "Short Description",
+        "full_desc": "Full Description",
+        "price": "10000",
+        "count": "4"
+    }
+]

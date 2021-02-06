@@ -15,7 +15,7 @@ def contacts(request):
 
 
 def house_grow(request):
-    title = 'теплица-каталог'
+    title = 'каталог'
     category = GrowCategory.objects.all()
     content = {'title_page': title,
                'category': category}
@@ -23,8 +23,6 @@ def house_grow(request):
 
 
 def house_grow_products(request,pk):
-    if pk==2:
-        return render(request, 'mainapp/avo.html')
-    else:
-        return render(request, '404')
+    return render(request, 'mainapp/avo.html')
+
 

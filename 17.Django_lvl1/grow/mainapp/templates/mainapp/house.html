@@ -11,8 +11,7 @@
                 <ol class="house_content">
                     {% for el_cat in category %}
                         <li>
-                            <p>{{ el_cat.name|upper }}</p>
-                            <a href="#"><img class="rep_pic" src="{% static 'img/avo_.png' %}" alt="Ваше Авокадо" title="Описание Авокадо"></a>
+                            <a href=" {% url 'mainapp:self_category' el_cat.pk %}">{{ el_cat.name|upper }}</a>
                         </li>
                     {% endfor %}
                 </ol>
