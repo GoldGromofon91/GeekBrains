@@ -732,3 +732,11 @@ a:hover {
 .footer_mask {
     height: 40px;
 }
+/*Category_product*/
+.category_product_block {
+    display: flex;
+    justify-content: space-around;
+}
+.category_block_img {
+    max-width:300px;
+}

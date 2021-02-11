@@ -2,14 +2,17 @@
 {% load static %}
 
 {% block container %}
-    <form class="form-horizontal" method="post">
+    <div class="h2 text-center head">
+        Редактирование профиля
+    </div>
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <br>
         <input class="form-control" type="submit" value="{{ button_name|upper }}">
     </form>
-    <a href="{% url 'authapp:register' %}"
+    <a href="{% url 'mainapp:index' %}"
        class="btn btn-round form-control">
-        {{ register|upper }}
+        {{ button_index|upper }}
     </a>
 {% endblock %}

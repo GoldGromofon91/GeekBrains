@@ -1,0 +1,20 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'mainapp/includes/main_topnav.html' %}
+    <h2>Товары категории: {{ category.name|capfirst }}</h2>
+    <br>
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        {% for el in products %}
+        <div style="max-width:300px;">
+            <a href="{% url 'mainapp:product_page' el.pk %}"><img src="/media/{{ el.image }}" alt="" style="weight:100px;height:100px;"></a>
+            <p>Цена: {{ el.price }}</p>
+            <h4>Краткое описание</h4>
+            <p>{{ el.small_desc }}</p>
+            <button></button>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
