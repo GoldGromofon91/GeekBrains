@@ -14,8 +14,8 @@
                     <input type="number" name="{{ el.pk }}"
                            min="0" max="{{ el.product.count }}"
                            value="{{ el.count }}">
-                    <span class="product_cost">{{ el.prod_cost }}&nbspруб</span>
 
+<span class="product_cost">{% include 'basketapp/includes/basket_record.html' %}&nbspруб</span>
                     <a href="{% url 'basketapp:remove' basket_elem_pk=el.pk %}"
                        class="btn btn-round">
                         удалить
@@ -24,8 +24,7 @@
             {% endfor %}
 
             <div class="basket_summary">
-                В корзине {{ user.basket_element_count }} товара(ов) общей стоимостью
-                {{ user.basket_element_price }} руб
+                {% include 'basketapp/includes/basket_summary.html' %}
             </div>
         {% else %}
             <h4>Корзина пуста</h4>

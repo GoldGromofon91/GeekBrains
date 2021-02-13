@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
+
 from basketapp.models import GrowBasket
 
 
@@ -29,3 +31,31 @@ def remove_prod(request,basket_elem_pk):
     basket_elem = get_object_or_404(GrowBasket, pk=basket_elem_pk)
     basket_elem.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def update_count_prod(request,el_item_pk,el_item_count):
+    if request.is_ajax():
+        item = GrowBasket.objects.filter(pk=el_item_pk).first()
+        if not item:
+            return JsonResponse({'status': False})
+        if el_item_count == 0:
+            item.delete()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        else:
+            item.count = el_item_count
+            item.save()
+
+        basket_summary_html = render_to_string(
+            'basketapp/includes/basket_summary.html',
+            request=request
+        )
+
+        basket_prod_html = render_to_string(
+            'basketapp/includes/basket_record.html',
+            request=request
+        )
+        return JsonResponse({'status': True,
+                             'basket_summary': basket_summary_html,
+                             'count': el_item_count,
+                             'basket_cost':basket_prod_html})

@@ -1,12 +1,17 @@
 "use strict"
 
 window.onload = function () {
-    console.log('DOM ready');
     $('.basket_record').on('change', "input[type='number']", function (event) {
-        console.log(event.target);
-        let countItem = event.target.value;
-        let elementPK = event.target.name;
-        console.log('id- ', elementPK, 'Count- ',countItem)
-        //TODO
+        let elItemCount = event.target.value;
+        let elItemPK = event.target.name;
+        $.ajax({
+            url: "/basket/edit/" + elItemPK + "/" + elItemCount + "/",
+            success: function (data_obj) {
+                if (data_obj.status) {
+                    $('.basket_summary').html(data_obj.basket_summary);
+                    $('.product_cost').html(data_obj.basket_cost);
+                }
+            },
+        });
     });
 }
