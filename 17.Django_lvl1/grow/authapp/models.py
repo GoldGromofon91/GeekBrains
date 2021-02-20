@@ -11,3 +11,7 @@ class GrowUser(AbstractUser):
 
     def basket_element_count(self):
         return sum(el.count for el in self.basket.all())
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_active = False
+        self.save(using=using)

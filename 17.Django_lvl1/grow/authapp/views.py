@@ -7,22 +7,26 @@ from django.urls import reverse
 
 
 def login(request):
+    redirect_param = request.GET.get('next','')
     if request.method == 'POST':
         login_form = AuthUserInShopLoginForm(data=request.POST)
         if login_form.is_valid():
             username = request.POST.get('username')
             password = request.POST.get('password')
+            redirect_to = request.POST.get('redirect-param')
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('mainapp:index'))
+                return HttpResponseRedirect(redirect_to or reverse('mainapp:index'))
     else:
         login_form = AuthUserInShopLoginForm()
+
     context = {
         'form': login_form,
         'title_page': 'аутентификация',
         'register': 'зарегестрироваться',
-        'button_name': 'войти'
+        'button_name': 'войти',
+        'redirect_to':redirect_param
     }
     return render(request, 'authapp/login.html', context=context)
 
@@ -43,7 +47,7 @@ def register_user(request):
     context = {
         'form': login_form,
         'title_page': 'регистрация',
-        'button_name': 'зарегестрироваться',
+        'button_name': 'зарегистрироваться',
         'button_index':'на главную'
     }
     return render(request, 'authapp/register.html', context=context)

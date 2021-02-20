@@ -1,0 +1,33 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="users_list">
+        {% for cat_obj in object_list %}
+            {% if not cat_obj.is_active %}
+                <p>{{ cat_obj.name }}</p> -> удалена
+            {% endif %}
+
+            <div class="user_name">
+                <p><strong>{{ cat_obj.name }}</strong></p>
+            </div>
+            <div>
+                {{ cat_obj.description }}
+            </div>
+            </div>
+            <div class="user_record {% if not cat_obj.is_active %}style='opacity:0.5;{% endif %}">
+                <div class="user_role">
+                    <a href="{% url 'adminapp:products_in_category' cat_obj.pk %}" class="btn btn-primary">
+                        товары этой категории
+                    </a>
+                    <a href="{% url 'adminapp:categories_update' cat_obj.pk %}" class="btn btn-primary">
+                        редактировать
+                    </a>
+                    <a href="{% url 'adminapp:categories_delete' cat_obj.pk %}" class="btn btn-danger">
+                        удалить
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

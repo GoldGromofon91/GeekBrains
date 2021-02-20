@@ -1,0 +1,49 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% load get_url_tags %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+    <div class="products_list">
+        <a href="{% url 'adminapp:categories' %}" class="form-control">
+            назад в категории
+        </a>
+        <a class="btn btn-primary form-control last" href="{% url 'adminapp:category_product_create' category.pk %} ">
+            новый продукт
+        </a>
+        <p><b>Товары категории:</b> {{ category.name|capfirst }}</p>
+        {% for object in product_in %}
+            <div class="product_record {% if not object.is_active %}not_active{% endif %}" style="margin-top: 20px;
+    display: flex;
+    justify-content: center;">
+                <img src="{{ object.image|url_prod_img }}" alt="{{ object.name }}" style="width: 100px;
+    height: 100px;">
+                <div class="product_name">
+                    {{ object.name|title }}
+                </div>
+                <div class="product_actions">
+                    <button>
+                        <a href="{% url 'adminapp:product_detail' object.pk %}">подробнее</a>
+                    </button>
+                    <button>
+                        <a href="{#% url 'adminapp:product_update' object.pk %#}">редактировать</a>
+                    </button>
+                    <button>
+                        <a href="{#% url 'adminapp:product_delete' object.pk %#}">удалить</a>
+                    </button>
+                </div>
+                <div class="summary">
+                    <b>цена</b>
+                    <p>{{ object.price }} руб</p>
+                    <b>количество</b>
+                    <p>{{ object.count }}</p>
+                </div>
+<!--                <div class="product_desc">-->
+<!--                    {{ object.small_desc|capfirst }}-->
+<!--                </div>-->
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

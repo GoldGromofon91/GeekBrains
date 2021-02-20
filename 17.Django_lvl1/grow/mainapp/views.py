@@ -1,5 +1,6 @@
 import random
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 
 from mainapp.models import GrowCategory, GrowProducts
@@ -31,8 +32,17 @@ def house_grow(request):
 
 
 def house_grow_products(request, pk):
+    page_number = request.GET.get('page',1)
     category = get_object_or_404(GrowCategory, pk=pk)
     products = category.growproducts_set.all()
+
+    products_paginator = Paginator(products, 2)
+    try:
+        products = products_paginator.page(page_number)
+    except PageNotAnInteger:
+        products = products_paginator.page(1)
+    except EmptyPage:
+        products = products_paginator.page(products_paginator.num_pages)
 
     content = {
         'page_title': 'товары категории',

@@ -17,9 +17,14 @@ class Users(models.Model):
 class GrowCategory(models.Model):
     name = models.CharField('категория товаров', max_length=50)
     description = models.CharField('описание', max_length=150, blank=True)
+    is_active = models.BooleanField('активность', default=True)
 
     def __str__(self):
         return f'{self.name}'
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_active = False
+        self.save(using=using)
 
 
 class GrowProducts(models.Model):
@@ -30,7 +35,7 @@ class GrowProducts(models.Model):
     full_desc = models.TextField('полное описание', blank=True)
     price = models.DecimalField('цена', max_digits=8, decimal_places=2, default=0)
     count = models.PositiveIntegerField('количество на складе', default=0)
+    is_active = models.BooleanField('активность', default=True)
 
     def __str__(self):
         return f'{self.name}({self.category.name})'
-

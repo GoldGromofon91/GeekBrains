@@ -6,9 +6,22 @@
     <h2>Товары категории: {{ category.name|capfirst }}</h2>
     <br>
     <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        <div class="paginator">
+            {% if products.has_previous %}
+                <a href="{% url 'mainapp:self_category' category.pk %}?page={{ products.previous_page_number }}">
+                    <-
+                </a>
+            {% endif %}
+            <span class="current">страница {{ products.number }} из {{ products.paginator.num_pages }}</span>
+            {% if products.has_next %}
+                <a href="{% url 'mainapp:self_category' category.pk %}?page={{ products.next_page_number }}">
+                    ->
+                </a>
+                    {% endif %}
+                </div>
         {% for el in products %}
         <div style="max-width:300px;">
-            <a href="{% url 'mainapp:product_page' el.pk %}"><img src="/media/{{ el.image }}" alt="" style="weight:100px;height:100px;"></a>
+            <a href="{% url 'mainapp:product_page' el.pk %}"><img src="/media/{{ el.image|default:'prod_img/prod_def.png' }}" alt="" style="weight:100px;height:100px;"></a>
             <p>Цена: {{ el.price }}</p>
             <h4>Краткое описание</h4>
             <p>{{ el.small_desc }}</p>

@@ -25,5 +25,8 @@
                 <img src="/static/img/basket.png" alt="">
             </a>
         </form>
+        {% if user.is_superuser %}
+            <a href="{% url 'adminpage:index' %}">Admin</a>
+        {% endif %}
     </div>
 </div>

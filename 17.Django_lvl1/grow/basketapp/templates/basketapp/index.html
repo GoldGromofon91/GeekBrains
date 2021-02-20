@@ -14,8 +14,7 @@
                     <input type="number" name="{{ el.pk }}"
                            min="0" max="{{ el.product.count }}"
                            value="{{ el.count }}">
-
-<span class="product_cost">{% include 'basketapp/includes/basket_record.html' %}&nbspруб</span>
+                    <span class="product_cost">{% include 'basketapp/includes/basket_record.html' %}&nbspруб</span>
                     <a href="{% url 'basketapp:remove' basket_elem_pk=el.pk %}"
                        class="btn btn-round">
                         удалить
