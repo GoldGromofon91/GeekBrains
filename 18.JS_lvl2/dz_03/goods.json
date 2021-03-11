@@ -1,0 +1,32 @@
+[
+  {
+    "id_product": 1,
+    "product_name": "Goods1",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 2,
+    "product_name": "Goods2",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 3,
+    "product_name": "Goods3",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 4,
+    "product_name": "Goods4",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 5,
+    "product_name": "Goods5",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  }
+]
