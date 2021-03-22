@@ -44,6 +44,18 @@ const vue = new Vue({
         },
         showUserCart() {
             this.isVisibleCart = !this.isVisibleCart;
+        },
+        buyItemHandler(event){
+            if(event.target.tagName !=='BUTTON') return;
+            const id = +event.target.dataset.id;
+            const item = this.filteredItems.find((elem)=> elem.id_product === id);
+            this.itemsInBin.push(item);
+        },
+        removeItemHandler(event){
+            if(event.target.tagName !=='BUTTON') return;
+            const id = +event.target.dataset.id;
+            const index = this.itemsInBin.findIndex((el)=> el.id_product === id);
+            this.itemsInBin.splice(index,1);
         }
     },
     mounted(){

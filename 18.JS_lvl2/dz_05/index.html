@@ -18,17 +18,24 @@
             </nav>
         </div>
         <div class="content">
-            <div class="item_list" >
+            <div class="item_list" v-on:click="buyItemHandler">
                 <div class="item" v-for="good in filteredItems">
                     <div class="item_img"><img src="img/goods.png" alt=""></div>
                     <div class="item_h4">{{good.product_name}}</div>
                     <div>{{good.short_desc}}</div>
                     <div class="item_p">{{good.price}}</div>
+                    <button type="button" v-bind:data-id="good.id_product">Купить</button>
                 </div>
             </div>
             <div class="bin" v-if="isVisibleCart">
                 <div class="items_list" v-if="itemsInBin.length>0">
                     <p><b>Товары в корзине:</b></p>
+                    <ul id="example-1">
+                        <li v-for="good in itemsInBin">
+                            {{ good.product_name }}
+                            <button v-on:click="removeItemHandler" v-bind:data-id="good.id_product">Удалить</button>
+                        </li>
+                    </ul>
                 </div>
                 <div v-else><p>В корзине нет товаров</p></div>
                 <div class="total_cost"></div>
