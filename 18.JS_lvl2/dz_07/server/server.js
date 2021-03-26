@@ -56,3 +56,29 @@ servApp.post('/delItem',bodyParser.json(),(req, res) => {
         });
     });
 })
+
+servApp.post('/addItemStat',bodyParser.json(),(req, res) => {
+    fs.readFile('./stats.json','utf-8',(err,data)=>{
+        const logUser = JSON.parse(data);
+        const item = req.body;
+        const date = new Date();
+
+        logUser.push(`id- ${item.id_product}, title - ${item.product_name}, add in -  ${date}`)
+        fs.writeFile('./stats.json', JSON.stringify(logUser),(err)=>{
+            console.log('File is writing');
+        })
+    })
+})
+
+servApp.post('/removeItemStat',bodyParser.json(),(req, res) => {
+    fs.readFile('./stats.json','utf-8',(err,data)=>{
+        const logUser = JSON.parse(data);
+        const item = req.body;
+        const date = new Date();
+
+        logUser.push(`id- ${item.id_product}, title - ${item.product_name}, remove in -  ${date}`)
+        fs.writeFile('./stats.json', JSON.stringify(logUser),(err)=>{
+            console.log('File is writing');
+        })
+    })
+})

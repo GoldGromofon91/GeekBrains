@@ -50,7 +50,13 @@ const vue = new Vue({
                 },
                 body: JSON.stringify(item)
             });
-            fetch('/addItemStat');
+            fetch('/addItemStat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item)
+            });
 
             this.itemsInBin.push(item);
         },
@@ -65,10 +71,15 @@ const vue = new Vue({
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(item),
             });
-
+            fetch('/removeItemStat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item)
+            });
 
             this.itemsInBin.splice(index,1);
-
         }
     },
     mounted(){
@@ -90,7 +101,7 @@ const vue = new Vue({
                 return response.json();
             })
             .then((data) => {
-                this.itemsInBin = data
+                this.itemsInBin = data;
             })
             .catch(err=> {
                 this.errorString += err;
