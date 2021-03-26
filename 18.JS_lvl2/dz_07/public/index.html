@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dz_06 | Nikita Savchenko</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="app" class="conteiner">
+        <div class="menu">
+            <nav class="navbar navbar-light bg-light" style="justify-content: start;">
+                <a href="index.html"><img src="img/icon-hover.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+                <input type="text" id="search" placeholder="поиск по сайту ..." v-model="search">
+                <button class="cart-button" type="button" v-on:click="searchItemHandler">Искать</button>
+                <button class="cart-button" type="button" v-on:click="showUserCart">Ваша Корзина</button>
+            </nav>
+        </div>
+        <div v-if="noError" class="content">
+            <div class="item_list" v-on:click="buyItemHandler">
+                <item-goods
+                    v-for="good in filteredItems"
+                    v-bind:id="good.id_product"
+                    v-bind:title="good.product_name"
+                    v-bind:short_desc="good.short_desc"
+                    v-bind:price="good.price"
+                ></item-goods>
+            </div>
+
+            <div class="bin"  v-if="isVisibleCart" >
+                <div v-if="itemsInBin.length>0" v-on:click= "removeItemHandler">
+                    <bin v-for="item in itemsInBin"
+                         v-bind:id="item.id_product"
+                         v-bind:title="item.product_name"
+                         v-bind:price="item.price"
+                    >
+                    </bin>
+                </div>
+                <div v-else>Нет товаров</div>
+            </div>
+        </div>
+
+        <div v-else>
+            <err>Error data download</err>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
