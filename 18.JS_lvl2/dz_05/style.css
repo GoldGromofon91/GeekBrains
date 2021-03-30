@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.item_list {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.item {
+    border: 1px solid;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bin {
+    margin-top: 50px;
+    justify-content: space-around;
+    display: flex;
+}
+

@@ -1,0 +1,32 @@
+[
+  {
+    "id_product": 1,
+    "product_name": "Notepad",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 2,
+    "product_name": "Apple",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 3,
+    "product_name": "Samsung",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 4,
+    "product_name": "Honor",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  },
+  {
+    "id_product": 5,
+    "product_name": "Lenovo",
+    "short_desc": "Lorem ipsum dolor sit amet, consectetur",
+    "price": 45600
+  }
+]
