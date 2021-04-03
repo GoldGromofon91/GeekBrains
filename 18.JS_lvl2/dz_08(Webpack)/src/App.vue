@@ -2,7 +2,7 @@
   <div class="conteiner">
     <div class="menu">
       <nav class="navbar navbar-light bg-light" style="justify-content: start;">
-        <a href="index.html"><img src="src/assets/icon-hover.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+        <a href="/"><img src="./assets/icon-hover.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
         <input type="text" id="search" placeholder="поиск по сайту ..." v-model="search">
         <button class="cart-button" type="button" v-on:click="searchItemHandler">Искать</button>
         <button class="cart-button" type="button" v-on:click="showUserCart">Ваша Корзина</button>
@@ -18,7 +18,6 @@
           v-bind:price="good.price"
         ></item-goods>
       </div>
-
       <div class="bin"  v-if="isVisibleCart" >
         <div v-if="itemsInBin.length>0" v-on:click= "removeItemHandler">
           <bin v-for="item in itemsInBin"
@@ -32,12 +31,14 @@
       </div>
     </div>
     <div v-else>
-      <err>Error data download</err>
+      <p>Error data download</p>
     </div>
   </div>
 </template>
 
 <script>
+  import list from './List';
+  import bin from './bin'
   export default {
     name: 'app',
     data() {
@@ -66,21 +67,21 @@
         if (event.target.tagName !== 'BUTTON') return;
         const id = event.target.dataset.id;
         const item = this.filteredItems.find((elem) => elem.id_product == id);
-
         fetch('/addItem', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(item)
-        });
+        })
+
         fetch('/addItemStat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(item)
-        });
+        })
 
         this.itemsInBin.push(item);
       },
@@ -95,6 +96,7 @@
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(item),
         });
+
         fetch('/removeItemStat', {
           method: 'POST',
           headers: {
@@ -105,6 +107,10 @@
 
         this.itemsInBin.splice(index, 1);
       }
+    },
+    components:{
+      'item-goods':list,
+      bin:bin,
     },
     mounted() {
       fetch('/itemList')

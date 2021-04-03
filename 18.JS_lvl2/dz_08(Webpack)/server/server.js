@@ -5,8 +5,8 @@ const $port = 8080;
 
 const servApp = express();
 
-servApp.use(express.static('/dist/'));
-servApp.use(bodyParser.json());
+servApp.use(express.static('./dist/'));
+// servApp.use(bodyParser.json());
 
 servApp.listen($port,()=>{
     console.log(`server listen ${$port}`)
@@ -26,7 +26,7 @@ servApp.get('/itemList', (req, res) => {
 servApp.get('/userCart', (req, res) => {
     fs.readFile('./server/cartgoods.json', 'utf-8', (err, data) => {
         if(!err) {
-            res.end(data);
+          res.end(data);
         } else {
             console.log(err);
         }
@@ -36,7 +36,6 @@ servApp.get('/userCart', (req, res) => {
 
 servApp.post('/addItem',bodyParser.json(),(req, res) => {
     fs.readFile('./server/cartgoods.json','utf-8',(err,data)=>{
-        console.log(data);
         const cart = JSON.parse(data);
         const item = req.body;
         cart.push(item)
