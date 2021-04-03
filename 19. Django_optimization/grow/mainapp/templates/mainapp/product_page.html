@@ -1,0 +1,15 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'mainapp/includes/main_topnav.html' %}
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+        <div style="max-width:300px;">
+            <img src="/media/{{ product.image }}" alt="" style="weight:100px;height:100px;">
+            <p>Цена: {{ product.price }}</p>
+            <h4>Краткое описание</h4>
+            <p>{{ product.small_desc }}</p>
+            <a href="{% url 'basketapp:add' product.pk %}"><input type="submit" name="Заказать" value="Заказать"></a>
+        </div>
+    </div>
+{% endblock %}

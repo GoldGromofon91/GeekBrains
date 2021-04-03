@@ -1,0 +1,32 @@
+
+<div class="index_topnav">
+    <div class="top_nav_text">
+        <a href="{% url 'mainapp:index'%}">Главная</a>
+        <a href="{% url 'mainapp:category' %}">Каталог</a>
+        <a href="{% url 'mainapp:contacts' %}">Контакты</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'authapp:profile_edit' %}">{{ user.username|default:'anonymus'|capfirst }}</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'authapp:logout' %}">Выйти</a>
+        {% else %}
+            <a href="{% url 'authapp:login' %}">Войти</a>
+        {% endif %}
+        
+    </div>
+    <div class="index_topnav_searching">
+        <form action="#">
+            <input type="text" name="" id="" placeholder="поиск по сайту ...">
+            <button>ПОИСК</button>
+            <a href="{% url 'basketapp:index' %}">
+                {% if user.is_authenticated %}
+                    <span>{{ user.basket_element_price|floatformat:0 }} руб ({{ user.basket_element_count }} шт)</span>
+                {% endif %}
+                <img src="/static/img/basket.png" alt="">
+            </a>
+        </form>
+        {% if user.is_superuser %}
+            <a href="{% url 'adminpage:index' %}">Admin</a>
+        {% endif %}
+    </div>
+</div>

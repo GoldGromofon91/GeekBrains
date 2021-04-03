@@ -1,0 +1,17 @@
+<ul class="menu " style="display: flex;
+    justify-content: space-around;">
+    <li>
+        <a href="{% url 'mainapp:index' %}">на сайт</a>
+    </li>
+    <li>
+        <a href="{% url 'adminapp:index' %}">пользователи</a>
+    </li>
+    <li>
+        <a href="{% url 'adminapp:categories' %}">
+            категории
+            {% if category %}
+                : {{ category.name }}
+            {% endif %}
+        </a>
+    </li>
+</ul>

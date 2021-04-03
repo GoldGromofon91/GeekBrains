@@ -1,0 +1,21 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="house_first_slide">
+        <!-- Меню -->
+        {% include 'mainapp/includes/main_topnav.html' %}
+        <!-- Контент -->
+        <div class="block_fr">
+            <h3 class="heading">Ваша теплица:</h3>
+            <div class="list_fr">
+                <ol class="house_content">
+                    {% for el_cat in category %}
+                        <li>
+                            <a href=" {% url 'mainapp:self_category' el_cat.pk %}">{{ el_cat.name|upper }}</a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+{% endblock %}
