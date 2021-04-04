@@ -14,7 +14,6 @@ class GrowUser(AbstractUser):
     age_user = models.PositiveIntegerField('возраст', null=True)
     avatar_user = models.ImageField(upload_to='users_avatar', blank=True)
     activation_key = models.CharField(max_length=128, blank=True)
-    user_activation_date = models.DateTimeField(auto_now_add=True, null=True)
 
     def basket_element_price(self):
         return sum(el.prod_cost for el in self.basket.all())
@@ -32,7 +31,7 @@ class GrowUser(AbstractUser):
 
     @property
     def is_activation_key_ttl_expired(self):
-        return now() - self.user_activation_date > timedelta(hours=ACTIVATION_KEY_TTL)
+        return now() - self.date_joined > timedelta(hours=ACTIVATION_KEY_TTL)
 
     def send_user_confirm_email(self):
         verify_link = reverse('authapp:verify_user',
