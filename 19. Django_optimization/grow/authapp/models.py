@@ -39,7 +39,7 @@ class GrowUser(AbstractUser):
                                       'activation_key': self.activation_key
                                       })
         subject = f'Здравствуйте, {self.username}! Подтвердите регистрацию!'
-        message = f'Для регистрации аккаунта {self.username} на портале {DOMAIN_NAME}' \
+        message = f'Для регистрации аккаунта {self.username} на портале {DOMAIN_NAME}\n' \
                   f'Пройдите по ссылке {DOMAIN_NAME}{verify_link}'
 
         return send_mail(subject, message, EMAIL_HOST_USER, [self.email], fail_silently=False)

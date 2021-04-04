@@ -5,9 +5,9 @@ from django.shortcuts import render, get_object_or_404
 
 from mainapp.models import GrowCategory, GrowProducts
 
-
-def get_category():
-    return GrowCategory.objects.all()
+#Create context_processor.categories() //*
+# def get_category():
+#     return GrowCategory.objects.all()
 
 
 def get_hot_prod():
@@ -26,7 +26,7 @@ def contacts(request):
 
 def house_grow(request):
     content = {'title_page': ' каталог',
-               'category': get_category()
+               # 'category': get_category()//*
                }
     return render(request, 'mainapp/house.html', context=content)
 
@@ -46,7 +46,7 @@ def house_grow_products(request, pk):
 
     content = {
         'page_title': 'товары категории',
-        'categories': get_category(),
+        # 'categories': get_category(),//*
         'category': category,
         'products': products
     }
@@ -57,7 +57,7 @@ def product_page(request,pk):
     growproduct = get_object_or_404(GrowProducts,pk=pk)
     content = {
         'page_title': 'старнциа товара',
-        'categories': get_category(),
+        # 'categories': get_category(),//*
         'product': growproduct
     }
     return render(request, 'mainapp/product_page.html', context=content)
