@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
 
 from authapp.forms import AuthUserInShopLoginForm,GrowUserCreationForm,GrowUserChangeForm
@@ -76,5 +77,10 @@ def profile_edit(request):
     return render(request, 'authapp/update.html', context=context)
 
 
-def verify_user(request):
-    pass
+def verify_user(request,email,activation_key):
+    user = get_user_model().objects.get(email=email)
+    if user.activation_key == activation_key and not user.is_activation_key_ttl_expired:
+        user.is_active = True
+        user.save()
+        auth.login(request,user)
+        return render(request,'authapp/confirm_verification.html')
