@@ -24,7 +24,7 @@ def login(request):
     context = {
         'form': login_form,
         'title_page': 'аутентификация',
-        'register': 'зарегестрироваться',
+        'register': 'зарегистрироваться',
         'button_name': 'войти',
         'redirect_to':redirect_param
     }
@@ -38,14 +38,19 @@ def logout(request):
 
 def register_user(request):
     if request.method == 'POST':
-        login_form = GrowUserCreationForm(request.POST,request.FILES)
-        if login_form.is_valid():
-            login_form.save()
+        login_user_form = GrowUserCreationForm(request.POST,request.FILES)
+        if login_user_form.is_valid():
+            user = login_user_form.save(commit=False)
+            user.is_active = False
+            user.generate_activation_key()
+            user.save()
+            if not user.send_user_confirm_email():
+                return HttpResponseRedirect(reverse('authapp:register'))
             return HttpResponseRedirect(reverse('authapp:login'))
     else:
-        login_form = GrowUserCreationForm()
+        login_user_form = GrowUserCreationForm()
     context = {
-        'form': login_form,
+        'form': login_user_form,
         'title_page': 'регистрация',
         'button_name': 'зарегистрироваться',
         'button_index':'на главную'
@@ -69,3 +74,7 @@ def profile_edit(request):
         'button_index':'на главную'
     }
     return render(request, 'authapp/update.html', context=context)
+
+
+def verify_user(request):
+    pass
