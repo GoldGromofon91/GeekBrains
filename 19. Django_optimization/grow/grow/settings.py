@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.conf.global_settings import EMAIL_USE_TLS
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -133,15 +135,21 @@ LOGIN_URL = '/auth/login/'
 
 #Setting SMTP -server
 DOMAIN_NAME = 'http://localhost:8000'
+# Yandex-error
+# EMAIL_HOST = 'smtp.yandex.ru'
+# EMAIL_HOST_USER = 'django2.2@yandex.ru'
+# EMAIL_HOST_PASSWORD = '*****'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'growyourselfadmin@test.ru'
+# SERVER_EMAIL = 'growyourselfadmin@test.ru'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'admin@growyourself.local'
-EMAIL_HOST_PASSWORD = 'geekbrains'
+EMAIL_HOST_USER = 'djangoadmin@growyourself.local'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'geekshop')
 EMAIL_USE_SSL = False
 
-
-# EMAIL_HOST_USER,EMAIL_HOST_PASSWORD = None,None
 ACTIVATION_KEY_TTL = 48
 
 #вариант python -m smtpd -n -c DebuggingServer localhost:25
