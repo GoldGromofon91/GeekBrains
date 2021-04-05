@@ -56,7 +56,7 @@ def house_grow_products(request, pk):
 def product_page(request,pk):
     growproduct = get_object_or_404(GrowProducts,pk=pk)
     content = {
-        'page_title': 'старнциа товара',
+        'page_title': 'страница товара',
         # 'categories': get_category(),//*
         'product': growproduct
     }

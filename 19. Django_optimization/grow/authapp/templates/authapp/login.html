@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block container %}
+
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -15,4 +16,6 @@
        class="btn btn-round form-control">
         {{ register|upper }}
     </a>
+
+
 {% endblock %}

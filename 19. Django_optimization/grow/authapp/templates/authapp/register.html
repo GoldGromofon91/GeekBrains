@@ -5,6 +5,11 @@
     <div class="h2 text-center head">
         Регистрация
     </div>
+    {% if not user.is_active %}
+        <div>
+            <a href="{{ domain }}"> {{ domain }}</a>
+        </div>
+    {% endif %}
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
@@ -15,5 +20,4 @@
        class="btn btn-round form-control">
         на главную
     </a>
-
 {% endblock %}
