@@ -43,3 +43,17 @@ class GrowUser(AbstractUser):
                   f'Пройдите по ссылке \n{DOMAIN_NAME}{verify_link}'
 
         return send_mail(subject, message, EMAIL_HOST_USER, [self.email], fail_silently=False)
+
+
+class GrowUserProfile(models.Model):
+    MALE = 'M'
+    FEMALE = 'W'
+    USER_GENDER_CHOICES = (
+        (MALE, 'male'),
+        (FEMALE, 'female'),
+    )
+
+    user = models.OneToOneField(GrowUser, primary_key=True, on_delete=models.CASCADE)
+    gender = models.CharField('gender', max_length=1, choices=USER_GENDER_CHOICES, blank=True)
+    url_user = models.CharField('url', max_length=150,blank=True)
+    language_user = models.CharField('ln',max_length=5,blank=True)

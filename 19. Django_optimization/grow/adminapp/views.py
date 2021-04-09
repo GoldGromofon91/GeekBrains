@@ -55,22 +55,6 @@ class GrowUserDelete(OnlyAdminMixin, PageTitleMixin, DeleteView):
     pk_url_kwarg = "usr_pk"
 
 
-# @user_passes_test(lambda usr: usr.is_superuser)
-# def delete_usr(request, usr_pk):
-#     user_obj = get_object_or_404(get_user_model(), pk=usr_pk)
-#
-#     if not user_obj.is_active or request.method == 'POST':
-#         if user_obj.is_active:
-#             user_obj.is_active = False
-#             user_obj.save()
-#         return HttpResponseRedirect(reverse('adminapp:index'))
-#     content = {
-#         'title_page': 'админка->пользователи->удаление',
-#         'user_to_delete': user_obj
-#     }
-#     return render(request, 'adminapp/growuser_confirm_delete.html', context=content)
-
-
 class GrowCategoryDelete(OnlyAdminMixin, PageTitleMixin, DeleteView):
     model = GrowCategory
     success_url = reverse_lazy('adminapp:categories')

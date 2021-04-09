@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from django.forms import HiddenInput, forms
+from django.forms import HiddenInput, forms, ModelForm
+
+from authapp.models import GrowUserProfile
 
 
 class AuthUserInShopLoginForm(AuthenticationForm):
@@ -43,3 +45,17 @@ class GrowUserChangeForm(UserAgeValidatorMixin,UserChangeForm):
                 continue
             field.widget.attrs['class'] = f'form-control {field_name}'
             field.help_text = ''
+
+
+class GrowUserProfileChangeForm(ModelForm):
+    class Meta:
+        model = GrowUserProfile
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field_name == 'user':
+                field.widget = HiddenInput()
+                continue
+            field.widget.attrs['class'] = f'form-control {field_name}'
