@@ -1,0 +1,19 @@
+{% if object.is_forming %}
+    <a href="{% url 'ordersapp:buy_order' object.pk %}"
+       class="btn btn-warning btn-round form-control last">
+        соверишть покупку
+    </a>
+    <a href="{#% url 'ordersapp:order_delete' object.pk %#}"
+       class="btn btn-default btn-round form-control last">
+        удалить
+    </a>
+{% endif %}
+
+<a href="{% url 'ordersapp:index' %}"
+   class="btn btn-info btn-round form-control last">
+    к списку заказов
+</a>
+<a href="{% url 'mainapp:index' %}"
+   class="btn btn-default btn-round form-control last">
+    на главную
+</a>

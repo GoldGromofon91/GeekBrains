@@ -5,28 +5,36 @@
         <a href="{% url 'mainapp:category' %}">Каталог</a>
         <a href="{% url 'mainapp:contacts' %}">Контакты</a>
         {% if user.is_authenticated %}
-            <a href="{% url 'authapp:profile_edit' %}">{{ user.username|default:'anonymus'|capfirst }}</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="" data-toggle="dropdown">
+                    {{ user.first_name|default:'Пользователь' }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'authapp:profile_edit' %}">Профиль</a></li>
+                    <li><a href="{% url 'ordersapp:index' %}">Заказы</a></li>
+                </ul>
+            </div>
+        {% if user.is_superuser %}
+            <a href="{% url 'adminpage:index' %}">ADMINKA</a>
+        {% endif %}
         {% endif %}
         {% if user.is_authenticated %}
             <a href="{% url 'authapp:logout' %}">Выйти</a>
         {% else %}
             <a href="{% url 'authapp:login' %}">Войти</a>
         {% endif %}
-        
+        <a href="{% url 'basketapp:index' %}">
+            {% if user.is_authenticated %}
+            <span>{{ user.basket_element_price|floatformat:0 }} руб ({{ user.basket_element_count }} шт)</span>
+            {% endif %}
+            <img src="/static/img/basket.png" alt="">
+        </a>
     </div>
     <div class="index_topnav_searching">
         <form action="#">
-            <input type="text" name="" id="" placeholder="поиск по сайту ...">
+            <input type="text" name="" id="" placeholder="поиск по сайту ..." style="width:150px">
             <button>ПОИСК</button>
-            <a href="{% url 'basketapp:index' %}">
-                {% if user.is_authenticated %}
-                    <span>{{ user.basket_element_price|floatformat:0 }} руб ({{ user.basket_element_count }} шт)</span>
-                {% endif %}
-                <img src="/static/img/basket.png" alt="">
-            </a>
         </form>
-        {% if user.is_superuser %}
-            <a href="{% url 'adminpage:index' %}">Admin</a>
-        {% endif %}
     </div>
 </div>

@@ -23,19 +23,12 @@ a:hover {
     max-width: 1366px;
 }
 
-.index_first_slide {
-    margin: 5px 100px;
-}
 
 .index_topnav {
+    height: 95px;
     margin-top: 50px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
     font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
-    margin-bottom: 20px;
 }
 
 .index_topnav a {
@@ -96,18 +89,17 @@ a:hover {
 }
 
 .first_slide_title {
-    display: none;
     visibility: hidden;
     transition: .55s opacity, .55s visibility;
     position: absolute;
     left: 0;
     bottom: 0;
-    max-width: 400px;
+    max-width: 500px;
     height: 200px;
     border: 8px solid green;
     background-color: white;
     border-radius: 8%;
-    padding: 5px 5px;
+    padding-left: 10px;
 }
 
 .index_first_slide_content:hover .first_slide_title {
@@ -169,8 +161,6 @@ a:hover {
 /*Second slide*/
 
 .index_second_slide {
-    margin-left: 100px;
-    margin-right: 100px;
     margin-top: 100px;
 }
 
@@ -242,10 +232,6 @@ a:hover {
 
 /*Third слайд*/
 
-.index_third_slide {
-    margin-left: 100px;
-    margin-right: 100px;
-}
 
 .third_slide_title {
     padding-left: 20px;
@@ -263,15 +249,13 @@ a:hover {
     background-repeat: no-repeat;
     border-radius: 5%;
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
-    margin-left: 25px;
-    margin-right: 25px;
     margin-bottom: 50px;
 }
 
 .third_slide_flex_box {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .third_slide_block_2 {
