@@ -9,4 +9,5 @@ urlpatterns = [
     path('category/', mainapp.house_grow, name='category'),
     path('category/<int:pk>/', mainapp.house_grow_products, name='self_category'),
     path('product/<int:pk>/', mainapp.product_page, name='product_page'),
+    path('product/<int:pk>/price/', mainapp.get_price, name='get_price'),
 ]

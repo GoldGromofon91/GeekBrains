@@ -5,7 +5,7 @@ from mainapp.models import GrowCategory
 
 
 def categories(request):
-    return {'category': GrowCategory.objects.all()}
+    return {'category': GrowCategory.objects.filter(is_active=True)}
 
 
 # def message_accept_link(request):

@@ -1,15 +1,18 @@
 from django.db import transaction
+from django.db.models.signals import pre_save, pre_delete
+from django.dispatch import receiver
 from django.forms import inlineformset_factory
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
 
 from ordersapp.forms import OrderForm, OrderItemForm
 from ordersapp.models import Order, ItemInOrder
 
 
-class OrderList(ListView):
+class ListOrder(ListView):
     model = Order
 
     def get_queryset(self):
@@ -65,7 +68,7 @@ class CreateOrder(CreateView):
 class UpdateOrder(UpdateView):
     model = Order
     form_class = OrderForm
-    success_url = reverse_lazy('orders:index')
+    success_url = reverse_lazy('ordersapp:index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -80,22 +83,34 @@ class UpdateOrder(UpdateView):
             )
         else:
             formset = OrderFormSet(instance=self.object)
+            for form in formset:
+                if form.instance.pk:
+                    form.initial['price'] = form.instance.product.price
         context['item_in_order'] = formset
         return context
 
     def form_valid(self, form):
         context = self.get_context_data()
-        orderitems = context['item_in_order']
+        order_items = context['item_in_order']
 
         with transaction.atomic():
             order = super().form_valid(form)
-            if orderitems.is_valid():
-                orderitems.save()
+            if order_items.is_valid():
+                order_items.save()
 
         if self.object.total_cost == 0:
             self.object.delete()
 
         return order
+
+
+class DetailOrder(DetailView):
+    model = Order
+
+
+class DeleteOrder(DeleteView):
+    model = Order
+    success_url = reverse_lazy('ordersapp:index')
 
 
 def buy_order(request, pk):
@@ -104,3 +119,24 @@ def buy_order(request, pk):
     order.save()
 
     return HttpResponseRedirect(reverse('ordersapp:index'))
+
+
+@receiver(pre_save, sender=ItemInOrder)
+def update_count_item_in_order_save(sender, update_fields, instance, **kwargs):
+    if instance.pk:
+        instance.product.count += sender.get_item(instance.pk).count - instance.count
+    else:
+        instance.product.count -= instance.count
+    instance.product.save()
+
+
+@receiver(pre_delete, sender=ItemInOrder)
+def update_count_in_order_after_delete(sender, instance, **kwargs):
+    instance.product.count += instance.count
+    instance.product.save()
+
+
+@receiver(pre_delete, sender=Order)
+def product_quantity_update_delete(sender, instance, **kwargs):
+    pass
+

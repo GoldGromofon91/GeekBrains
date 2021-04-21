@@ -35,10 +35,11 @@ class Order(models.Model):
     def total_cost(self):
         return sum(map(lambda x: x.prod_cost, self.item_in_order.all()))
 
-    # переопределяем метод, удаляющий объект
     def delete(self, using=None, keep_parents=False):
-        self.is_active = False
-        self.save()
+        # Recovery, если не хотим удалять из БД
+        # self.is_active = False
+        # self.save()
+        super().delete()
 
     class Meta:
         ordering = ('-created_at',)
@@ -57,3 +58,6 @@ class ItemInOrder(models.Model):
     def prod_cost(self):
         return self.product.price * self.count
 
+    @classmethod
+    def get_item(cls,pk):
+        return cls.objects.filter(pk=pk).first()

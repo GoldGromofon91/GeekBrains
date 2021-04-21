@@ -26,6 +26,11 @@ class GrowCategory(models.Model):
         self.is_active = False
         self.save(using=using)
 
+    class Meta:
+        verbose_name = 'категория продукта'
+        verbose_name_plural = 'категории продукта'
+        ordering = ['name']
+
 
 class GrowProducts(models.Model):
     category = models.ForeignKey(GrowCategory, on_delete=models.CASCADE)
@@ -39,3 +44,13 @@ class GrowProducts(models.Model):
 
     def __str__(self):
         return f'{self.name}({self.category.name})'
+
+    @classmethod
+    def get_items(cls):
+        return cls.objects.filter(is_active=True,
+                                  category__is_active=True)
+
+    class Meta:
+        verbose_name = 'продукт'
+        verbose_name_plural = 'продукты'
+        ordering = ['name']
