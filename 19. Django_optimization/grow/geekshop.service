@@ -1,0 +1,12 @@
+[Unit]
+Description=growyourself daemon
+After=network.target
+
+[Service]
+User=grow
+Group=www-data
+WorkingDirectory=/home/grow/GrowServer/grow
+ExecStart=/usr/bin/gunicorn3 --access-logfile server.logs --workers 2 --bind unix:/home/grow/GrowServer/grow/grow.sock grow.wsgi
+
+[Install]
+WantedBy=multi-user.target
