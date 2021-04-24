@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.functional import cached_property
 
 from mainapp.models import GrowProducts
 
@@ -14,6 +15,6 @@ class GrowBasket(models.Model):
     updated_at = models.DateTimeField('время обновления', auto_now=True)
 
 
-    @property
+    @cached_property
     def prod_cost(self):
         return self.product.price * self.count

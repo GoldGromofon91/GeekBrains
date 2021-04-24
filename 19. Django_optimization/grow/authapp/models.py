@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.db import models
 from django.urls import reverse
+from django.utils.functional import cached_property
 from django.utils.timezone import now
 
 from grow.settings import DOMAIN_NAME, EMAIL_HOST_USER, ACTIVATION_KEY_TTL
@@ -15,11 +16,15 @@ class GrowUser(AbstractUser):
     avatar_user = models.ImageField(upload_to='users_avatar', blank=True)
     activation_key = models.CharField(max_length=128, blank=True)
 
+    @cached_property
+    def get_element(self):
+        return self.basket.select_related('product').all()
+
     def basket_element_price(self):
-        return sum(el.prod_cost for el in self.basket.all())
+        return sum(el.prod_cost for el in self.get_element)
 
     def basket_element_count(self):
-        return sum(el.count for el in self.basket.all())
+        return sum(el.count for el in self.get_element)
 
     def delete(self, using=None, keep_parents=False):
         self.is_active = False
@@ -55,5 +60,5 @@ class GrowUserProfile(models.Model):
 
     user = models.OneToOneField(GrowUser, primary_key=True, on_delete=models.CASCADE)
     gender = models.CharField('gender', max_length=1, choices=USER_GENDER_CHOICES, blank=True)
-    url_user = models.CharField('url', max_length=150,blank=True)
-    language_user = models.CharField('ln',max_length=5,blank=True)
+    url_user = models.CharField('url', max_length=150, blank=True)
+    language_user = models.CharField('ln', max_length=5, blank=True)

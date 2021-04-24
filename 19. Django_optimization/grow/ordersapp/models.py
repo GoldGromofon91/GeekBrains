@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.functional import cached_property
 
 from mainapp.models import GrowProducts
 
@@ -23,17 +24,22 @@ class Order(models.Model):
     status = models.CharField('cтатус', max_length=1, choices=STATUS_CHOICES, default=STATUS_FORMING)
     is_active = models.BooleanField('активность заказа', default=True)
 
+    @cached_property
+    def get_item_in_order(self):
+        return self.item_in_order.all()
+
+
     @property
     def is_forming(self):
         return self.status == self.STATUS_FORMING
 
     @property
     def total_count(self):
-        return sum(map(lambda x: x.count, self.item_in_order.all()))
+        return sum(map(lambda x: x.count, self.get_item_in_order))
 
     @property
     def total_cost(self):
-        return sum(map(lambda x: x.prod_cost, self.item_in_order.all()))
+        return sum(map(lambda x: x.prod_cost, self.get_item_in_order))
 
     def delete(self, using=None, keep_parents=False):
         # Recovery, если не хотим удалять из БД

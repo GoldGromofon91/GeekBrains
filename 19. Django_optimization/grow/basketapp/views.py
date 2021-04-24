@@ -11,7 +11,6 @@ from grow.settings import LOGIN_URL
 @login_required
 def index(request):
     basket_user = request.user.basket.all()
-    print(basket_user.count())
     content = {'title_page': 'корзина',
                'basket_user': basket_user,
                'count': basket_user.count(),
