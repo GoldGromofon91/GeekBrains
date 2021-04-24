@@ -89,6 +89,15 @@ DATABASES = {
     }
 }
 
+if not DEBUG:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'localhost',
+        'NAME': 'grow',
+        'USER': 'django',
+        'PASSWORD': 'geekbrains',
+    }
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
