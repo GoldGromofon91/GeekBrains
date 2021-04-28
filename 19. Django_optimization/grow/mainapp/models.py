@@ -17,7 +17,7 @@ class Users(models.Model):
 class GrowCategory(models.Model):
     name = models.CharField('категория товаров', max_length=50)
     description = models.CharField('описание', max_length=150, blank=True)
-    is_active = models.BooleanField('активность', default=True)
+    is_active = models.BooleanField('активность', db_index=True, default=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -40,15 +40,15 @@ class GrowProducts(models.Model):
     full_desc = models.TextField('полное описание', blank=True)
     price = models.DecimalField('цена', max_digits=8, decimal_places=2, default=0)
     count = models.PositiveIntegerField('количество на складе', default=0)
-    is_active = models.BooleanField('активность', default=True)
+    is_active = models.BooleanField('активность', db_index=True, default=True)
 
     def __str__(self):
         return f'{self.name}({self.category.name})'
 
     @classmethod
     def get_items(cls):
-        return cls.objects.filter(is_active=True,
-                                  category__is_active=True)
+        return cls.objects.select_related('category').\
+            filter(is_active=True, category__is_active=True)
 
     class Meta:
         verbose_name = 'продукт'

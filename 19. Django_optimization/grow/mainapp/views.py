@@ -1,9 +1,11 @@
 import random
 
+from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
+from grow import settings
 from mainapp.models import GrowCategory, GrowProducts
 
 
@@ -14,6 +16,27 @@ from mainapp.models import GrowCategory, GrowProducts
 
 # def get_hot_prod():
 #     return random.choice(GrowProducts.objects.all())
+
+def get_grow_products():
+    if settings.LOW_CACHE:
+        key = 'grow_products'
+        products = cache.get(key)
+        if products is None:
+            products = GrowProducts.get_items()
+            cache.set(key, products)
+        return products
+    return GrowProducts.get_items()
+
+
+def get_grow_products_by_id(pk):
+    if settings.LOW_CACHE:
+        key = f'category_{pk}'
+        products = cache.get(key)
+        if products is None:
+            products = GrowProducts.get_items().filter(category_id=pk)
+            cache.set(key, products)
+        return products
+    return GrowProducts.get_items().filter(category_id=pk)
 
 
 def index(request):
@@ -36,7 +59,7 @@ def house_grow(request):
 def house_grow_products(request, pk):
     page_number = request.GET.get('page', 1)
     category = get_object_or_404(GrowCategory, pk=pk)
-    products = category.growproducts_set.filter(is_active=True)
+    products = get_grow_products_by_id(pk)
 
     products_paginator = Paginator(products, 2)
     try:

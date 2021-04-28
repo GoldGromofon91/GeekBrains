@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.db import transaction
 from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
@@ -6,20 +7,27 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
 
 from ordersapp.forms import OrderForm, OrderItemForm
 from ordersapp.models import Order, ItemInOrder
 
 
-class ListOrder(ListView):
+class LoginUserOnlyMixin:
+    @method_decorator(user_passes_test(lambda user: user.is_authenticated))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class ListOrder(LoginUserOnlyMixin, ListView):
     model = Order
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
 
 
-class CreateOrder(CreateView):
+class CreateOrder(LoginUserOnlyMixin,CreateView):
     model = Order
     form_class = OrderForm
     success_url = reverse_lazy('ordersapp:index')
@@ -59,13 +67,14 @@ class CreateOrder(CreateView):
                 orderitems.save()
                 self.request.user.basket.all().delete()
 
-        if self.object.total_cost == 0:
+        if self.object.summary_product['total_cost'] == 0.00:
             self.object.delete()
 
+        print(self.object.summary_product['total_cost'])
         return order
 
 
-class UpdateOrder(UpdateView):
+class UpdateOrder(LoginUserOnlyMixin,UpdateView):
     model = Order
     form_class = OrderForm
     success_url = reverse_lazy('ordersapp:index')
@@ -82,7 +91,8 @@ class UpdateOrder(UpdateView):
                 instance=self.object
             )
         else:
-            formset = OrderFormSet(instance=self.object)
+            queryset = self.object.item_in_order.select_related('product')
+            formset = OrderFormSet(instance=self.object, queryset=queryset)
             for form in formset:
                 if form.instance.pk:
                     form.initial['price'] = form.instance.product.price
@@ -98,17 +108,17 @@ class UpdateOrder(UpdateView):
             if order_items.is_valid():
                 order_items.save()
 
-        if self.object.total_cost == 0:
+        if self.object.summary_product['total_cost'] == 0.00:
             self.object.delete()
 
         return order
 
 
-class DetailOrder(DetailView):
+class DetailOrder(LoginUserOnlyMixin,DetailView):
     model = Order
 
 
-class DeleteOrder(DeleteView):
+class DeleteOrder(LoginUserOnlyMixin,DeleteView):
     model = Order
     success_url = reverse_lazy('ordersapp:index')
 
@@ -139,4 +149,3 @@ def update_count_in_order_after_delete(sender, instance, **kwargs):
 @receiver(pre_delete, sender=Order)
 def product_quantity_update_delete(sender, instance, **kwargs):
     pass
-

@@ -19,27 +19,30 @@ class Order(models.Model):
     )
 
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    created_at = models.DateTimeField('время создания', auto_now_add=True)
+    created_at = models.DateTimeField('время создания', db_index=True,auto_now_add=True)
     updated_at = models.DateTimeField('время обновления', auto_now=True)
-    status = models.CharField('cтатус', max_length=1, choices=STATUS_CHOICES, default=STATUS_FORMING)
-    is_active = models.BooleanField('активность заказа', default=True)
+    status = models.CharField('cтатус', max_length=1, db_index=True, choices=STATUS_CHOICES, default=STATUS_FORMING)
+    is_active = models.BooleanField('активность заказа', db_index=True, default=True)
 
     @cached_property
     def get_item_in_order(self):
         return self.item_in_order.all()
 
 
-    @property
+    @cached_property
     def is_forming(self):
         return self.status == self.STATUS_FORMING
 
-    @property
-    def total_count(self):
-        return sum(map(lambda x: x.count, self.get_item_in_order))
+    @cached_property
+    def summary_product(self):
+        item = self.item_in_order.all()
+        print(sum(map(lambda x: x.prod_cost, item)))
+        return {
+            'total_count': sum(map(lambda x: x.count, item)),
+            'total_cost': sum(map(lambda x: x.prod_cost, item))
+        }
 
-    @property
-    def total_cost(self):
-        return sum(map(lambda x: x.prod_cost, self.get_item_in_order))
+
 
     def delete(self, using=None, keep_parents=False):
         # Recovery, если не хотим удалять из БД
@@ -60,7 +63,7 @@ class ItemInOrder(models.Model):
     created_at = models.DateTimeField('время создания', auto_now_add=True)
     updated_at = models.DateTimeField('время обновления', auto_now=True)
 
-    @property
+    @cached_property
     def prod_cost(self):
         return self.product.price * self.count
 

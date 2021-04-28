@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.db.models.signals import post_save, pre_init
 from django.dispatch import receiver
 from django.shortcuts import render
@@ -42,6 +43,7 @@ def login(request):
     return render(request, 'authapp/login.html', context=context)
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('mainapp:index'))
@@ -82,6 +84,7 @@ def register_user(request):
     return render(request, 'authapp/register.html', context=context)
 
 
+@login_required
 def profile_edit(request):
     if request.method == 'POST':
         login_form = GrowUserChangeForm(request.POST, request.FILES, instance=request.user)

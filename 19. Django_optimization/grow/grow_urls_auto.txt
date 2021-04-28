@@ -1,0 +1,5 @@
+http://192.168.1.51
+http://192.168.1.51/basket/
+http://192.168.1.51/orders/
+http://192.168.1.51/basket/
+http://192.168.1.51/logout/
