@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import F
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
@@ -24,7 +25,7 @@ def add_prod(request, pk):
         return HttpResponseRedirect(reverse('mainapp:product_page',kwargs={'pk': pk}))
 
     basket_item, _ = GrowBasket.objects.get_or_create(user=request.user, product_id=pk)
-    basket_item.count += 1
+    basket_item.count = F('count') + 1
     basket_item.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

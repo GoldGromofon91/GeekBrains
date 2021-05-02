@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from django.forms import HiddenInput, forms
+from django.forms import HiddenInput
+from django import forms
 from authapp.forms import GrowUserChangeForm
 from mainapp.models import GrowCategory, GrowProducts
 
@@ -23,9 +24,12 @@ class GrowCategoryUpdateForm(GrowUserChangeForm):
 
 
 class GrowCategoryAdminCreateForm(ModelForm):
+    discount = forms.IntegerField(label='скидка', required=False, min_value=0, max_value=90, initial=0)
+
     class Meta:
         model = GrowCategory
-        fields = "__all__"
+        # fields = "__all__"
+        exclude = ()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -44,4 +48,3 @@ class GrowProductsAdminCreateForm(ModelForm):
             field.widget.attrs['class'] = 'form-control'
             if field_name == 'category':
                 field.widget = HiddenInput()
-

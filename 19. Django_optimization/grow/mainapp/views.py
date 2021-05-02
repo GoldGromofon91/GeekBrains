@@ -2,6 +2,8 @@ import random
 
 from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -94,3 +96,13 @@ def get_price(request, pk):
         return JsonResponse(
             {'prod_price': product and product.price or 0}
         )
+
+
+# Оптимизация SQL запросов через UPDATE
+@receiver(pre_save, sender=GrowCategory)
+def update_prod_cat_save(sender, instance, **kwargs):
+    if instance.pk:
+        if instance.is_active:
+            instance.growproducts_set.update(is_active=True)
+        else:
+            instance.growproducts_set.update(is_active=False)

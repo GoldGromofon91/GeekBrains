@@ -43,7 +43,7 @@ class GrowProducts(models.Model):
     is_active = models.BooleanField('активность', db_index=True, default=True)
 
     def __str__(self):
-        return f'{self.name}({self.category.name})'
+        return f'{self.name}'
 
     @classmethod
     def get_items(cls):

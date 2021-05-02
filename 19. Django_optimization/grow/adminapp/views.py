@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import user_passes_test
+from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -74,6 +75,20 @@ class GrowCategoryUpdate(OnlyAdminMixin, PageTitleMixin, UpdateView):
     form_class = GrowCategoryAdminCreateForm
     success_url = reverse_lazy('adminapp:categories')
     title_page = 'админка->категории->обновить'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'категории/редактирование'
+        return context
+
+    def form_valid(self, form):
+        if 'discount' in form.cleaned_data:
+            discount = form.cleaned_data['discount']
+            if discount:
+                self.object.growproducts_set. \
+                    update(price=F('price') * (1 - discount / 100))
+
+        return super().form_valid(form)
 
 
 class GrowCategoriesList(OnlyAdminMixin, PageTitleMixin, ListView):
