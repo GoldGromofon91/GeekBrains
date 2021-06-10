@@ -4,7 +4,7 @@ cffi==1.14.5
 chardet==4.0.0
 cryptography==3.4.7
 defusedxml==0.7.1
-Django==2.2
+Django==2.2.24
 django-debug-toolbar==3.2.1
 django-debug-toolbar-template-profiler==2.0.2
 django-extensions==3.1.2
