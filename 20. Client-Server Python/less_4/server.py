@@ -1,32 +1,30 @@
-from socket import socket, AF_INET, SOCK_STREAM
-import time
-from sys import argv
+import sys
 import json
-from status import status
+import CONFIGS
+from socket import socket, AF_INET, SOCK_STREAM
+from function import get_from_server, check_message_on_server, send, create_ip_port
 
-ip,port = argv[1:]
 
-s = socket(AF_INET,SOCK_STREAM)
-s.bind((ip,int(port)))
-s.listen(10)
+def start_server():
+    # try:
+    #     listen_ip = sys.argv[1]
+    #     listen_port = int(sys.argv[2])
+    # except Exception:
+    #     print('Некорректные параметры сервера!\nИспользуются стандартные настройки')
+    #     sys.exit(1)
 
-response = {
-    "response":None,
-}
+    ip, port = create_ip_port()
+    listen_socket = socket(AF_INET, SOCK_STREAM)
+    listen_socket.bind((ip, port))
+    listen_socket.listen(CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('MAX_CONNECTIONS'))
 
-while True:
-    client,add = s.accept()
-    request = client.recv(256)
-    data_from_client = json.loads(request)
-    print(data_from_client)
+    while True:
+        client, client_address = listen_socket.accept()
+        message = get_from_server(client)
+        response = check_message_on_server(message)
+        send(client, response)
+        client.close()
 
-    if data_from_client['action'] == "presence":
-        response['response'] = status.get('OK')
-        response['alert'] = 'Connect'
-    else:
-        response['response'] = status.get('BAD_REQUEST')
-        response['error'] = 'Something wrong'
 
-    response_from_server = json.dumps(response)
-    client.send(response_from_server.encode('utf-8'))
-    client.close()
+if __name__ == "__main__":
+    start_server()
