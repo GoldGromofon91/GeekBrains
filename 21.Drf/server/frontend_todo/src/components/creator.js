@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreatorItem=({creator})=> {
+const CreatorItem = ({creator}) => {
     return (
         <tr>
             <td>{creator.username}</td>
@@ -10,13 +10,20 @@ const CreatorItem=({creator})=> {
         </tr>
     )
 }
-const CreatorList = ({creators})=> {
-    return(
+const CreatorList = ({creators}) => {
+    return (
         <table>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Год рождения</th>
-            {creators.map((creator)=> <CreatorItem creator={creator} />)}
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Год рождения</th>
+            </tr>
+            </thead>
+            <tbody>
+                {creators.map((creator) => <CreatorItem key = {creator.id} creator={creator}/>)}
+            </tbody>
         </table>
     )
 }

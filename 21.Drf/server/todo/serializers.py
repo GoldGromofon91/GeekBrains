@@ -13,8 +13,8 @@ class ProjectModelSerializer(serializers.ModelSerializer):
 
 
 class TodoModelSerializer(serializers.ModelSerializer):
-    user = CreatorModelSerializer()
-    project = ProjectModelSerializer()
+    user = serializers.CharField()
+    project = serializers.CharField()
 
     class Meta:
         model = Todo
