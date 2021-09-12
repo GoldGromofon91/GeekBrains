@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Author(AbstractUser):
-    email = models.CharField(max_length=64, unique=True, null=False, blank=False)
+    email = models.CharField(max_length=64, unique=True)
     birthday_year = models.PositiveSmallIntegerField(null=True)
     is_active = models.BooleanField(default=False)
 
