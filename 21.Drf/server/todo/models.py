@@ -6,8 +6,8 @@ from django.db import models
 class Project(models.Model):
     name = models.CharField(max_length=32, null=False)
     ref = models.CharField(max_length=128, null=True, blank=True)
-    users = models.ManyToManyField(get_user_model(), related_name='user_to_project')
-
+    users = models.ManyToManyField(get_user_model(),related_name='user_to_project')
+    # user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,related_name='user_to_project')
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'

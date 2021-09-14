@@ -39,6 +39,7 @@ class App extends React.Component {
             .get(server.creators)
             .then(serv_response => {
                 const response_data = serv_response.data
+                // console.log(response_data)
                 this.setState(
                     {"creators": response_data}
                 )
@@ -50,6 +51,7 @@ class App extends React.Component {
             .get(server.projects)
             .then(serv_response => {
                 const response_data = serv_response.data['results']
+                // console.log(response_data)
                 this.setState(
                     {"projects": response_data}
                 )
@@ -61,6 +63,7 @@ class App extends React.Component {
             .get(server.todo)
             .then(serv_response => {
                 const response_data = serv_response.data
+                // console.log(response_data)
                 this.setState(
                     {"todo": response_data['results']}
                 )

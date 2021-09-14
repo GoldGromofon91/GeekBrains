@@ -11,10 +11,10 @@ class CreatorModelSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.id = validated_data.get('id', instance.id)
         instance.username = validated_data.get('username', instance.username)
         instance.email = validated_data.get('email', instance.email)
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.birthday_year = validated_data.get('birthday_year', instance.birthday_year)
         return instance
+
