@@ -36,14 +36,17 @@
         transform: rotate(360deg);
     }
 }
-.Menu{
+
+.Menu {
     background: tomato;
     min-height: 20px;
 }
-.Link{
+
+.Link {
     text-decoration: none;
     color: black;
 }
+
 .Link:hover {
     background: white;
 }
@@ -52,6 +55,7 @@ ul {
     font-size: 0;
 
 }
+
 ul li {
     font-size: 20px;
     text-decoration: none;
@@ -60,6 +64,4 @@ ul li {
     width: 20%;
     margin: 0;
     padding: 0;
-
-
 }

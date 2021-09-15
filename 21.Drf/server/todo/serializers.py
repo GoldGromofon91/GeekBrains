@@ -16,10 +16,9 @@ class ProjectModelSerializer(serializers.ModelSerializer):
 
 class TodoModelSerializer(serializers.ModelSerializer):
     text = serializers.CharField()
+    user = CreatorModelSerializer()
 
     class Meta:
         model = Todo
         fields = "__all__"
 
-    def create(self, validated_data):
-        return Todo.objects.create(**validated_data)
