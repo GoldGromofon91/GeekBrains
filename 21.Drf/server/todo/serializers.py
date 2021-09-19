@@ -5,14 +5,16 @@ from creator.serializers import CreatorModelSerializer
 from todo.models import Project, Todo
 
 
-class ProjectModelSerializer(serializers.ModelSerializer):
-    # users = serializers.PrimaryKeyRelatedField(many=True,queryset=get_user_model().objects.all())
+class ProjectGetModelSerializer(serializers.ModelSerializer):
     users = serializers.StringRelatedField(many=True)
-    # users = serializers.CharField()
     class Meta:
         model = Project
         fields = "__all__"
 
+class ProjectAddEditModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = "__all__"
 
 class TodoModelSerializer(serializers.ModelSerializer):
     text = serializers.CharField()

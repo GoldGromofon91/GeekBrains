@@ -16,5 +16,6 @@ class CreatorModelSerializer(serializers.ModelSerializer):
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.birthday_year = validated_data.get('birthday_year', instance.birthday_year)
+        instance.save()
         return instance
 
