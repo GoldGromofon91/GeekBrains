@@ -19,3 +19,8 @@ class CreatorModelSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
+class CreatorModelSerializer_v2_0(CreatorModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'birthday_year','is_superuser','is_staff']

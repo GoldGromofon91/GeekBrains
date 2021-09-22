@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
 
 from todo.filter import ProjectFilter, TodoFilter
@@ -21,6 +19,6 @@ class ProjectViewSet(ModelViewSet):
 
 class TodoViewSet(ModelViewSet):
     queryset = Todo.objects.all()
-    serializer_class = TodoModelSerializer
     pagination_class = TodoLimitOffsetPagination
     filterset_class = TodoFilter
+    serializer_class = TodoModelSerializer
