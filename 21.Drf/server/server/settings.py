@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'drf_yasg',
+    'graphene_django',
     'creator',
     'todo',
 ]
@@ -118,6 +119,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
+}
+
+GRAPHENE = {
+    "SCHEMA": "schema.schema"
 }
 
 # Internationalization

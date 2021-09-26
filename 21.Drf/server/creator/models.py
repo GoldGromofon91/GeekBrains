@@ -10,6 +10,5 @@ class Author(AbstractUser):
         return self.username
 
     class Meta:
-        ordering = ['-id']
         verbose_name = 'Автор'
         verbose_name_plural = 'Авторы'
