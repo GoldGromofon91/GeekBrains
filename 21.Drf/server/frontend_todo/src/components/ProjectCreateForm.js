@@ -5,7 +5,7 @@ class ProjectCreateForm extends React.Component {
         super(props);
         this.state = {
             projectName: "",
-            authorId: 0
+            authorId: 1
         }
     }
 
