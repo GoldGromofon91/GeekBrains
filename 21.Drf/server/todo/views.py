@@ -1,9 +1,11 @@
+from rest_framework import mixins, viewsets
 from rest_framework.viewsets import ModelViewSet
 
 from todo.filter import ProjectFilter, TodoFilter
 from todo.models import Project, Todo
 from todo.pagination import ProjectLimitOffsetPagination, TodoLimitOffsetPagination
-from todo.serializers import ProjectGetModelSerializer, TodoModelSerializer, ProjectAddEditModelSerializer
+from todo.serializers import ProjectGetModelSerializer, ProjectAddEditModelSerializer, \
+    TodoGetModelSerializer, TodoAddEditModelSerializer
 
 
 class ProjectViewSet(ModelViewSet):
@@ -18,7 +20,11 @@ class ProjectViewSet(ModelViewSet):
 
 
 class TodoViewSet(ModelViewSet):
-    queryset = Todo.objects.all()
+    queryset = Todo.objects.filter(is_active=True)
     pagination_class = TodoLimitOffsetPagination
     filterset_class = TodoFilter
-    serializer_class = TodoModelSerializer
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return TodoGetModelSerializer
+        return TodoAddEditModelSerializer
