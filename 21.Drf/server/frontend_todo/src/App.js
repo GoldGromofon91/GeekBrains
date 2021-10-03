@@ -152,7 +152,7 @@ class App extends React.Component {
             .catch(error => console.log(error))
     }
 
-    projectCreate(projectName,authorId) {
+    projectCreate(projectName, authorId) {
         const headers = this.getHeaders();
         axios
             .post(server.projects,
@@ -180,17 +180,16 @@ class App extends React.Component {
                     todo: new_todo
                 })
                 console.log(this.state.todo)
-                // console.log(this.state.todo)
             })
             .catch(error => console.log(error))
     }
 
-    todoCreate(projectId,authorId,todoText) {
+    todoCreate(projectId, authorId, todoText) {
         const headers = this.getHeaders();
-        console.log(projectId,authorId,todoText)
+        console.log(projectId, authorId, todoText)
         axios
             .post(server.todo,
-                {project: projectId, user: authorId, text:todoText},
+                {project: projectId, user: authorId, text: todoText},
                 {headers})
             .then(result => {
                 console.log(result.data)
@@ -229,23 +228,33 @@ class App extends React.Component {
                     </nav>
                     <Switch>
                         <Route exact path={'/'} component={MainPage}/>
-                        <Route exact path={'/projects/'} component={() => <ProjectList items={this.state.projects}
-                                                                                       deleteProject={(id) => this.projectDelete(id)}/>}/>
+                        <Route exact path={'/projects/'} component={() =>
+                            <ProjectList
+                                items={this.state.projects}
+                                deleteProject={(id) => this.projectDelete(id)}
+                            />}
+                        />
                         <Route exact path={'/projects/create'}>
-                            <ProjectCreateForm projectCreate={(projectName, authorId) => this.projectCreate(projectName, authorId)}
-                                                creators={this.state.creators}/>
+                            <ProjectCreateForm
+                                projectCreate={(projectName, authorId) => this.projectCreate(projectName, authorId)}
+                                creators={this.state.creators}/>
                         </Route>
                         <Route exact path={'/creators/'}
-                               component={() => <CreatorList creators={this.state.creators}/>}/>
+                               component={() =>
+                                   <CreatorList creators={this.state.creators}/>}
+                        />
                         <Route exact path={'/todo/'} component={() => <TodoList items={this.state.todo}
                                                                                 deleteTodo={(id) => this.todoDelete(id)}/>}/>
                         <Route exact path={'/todo/create'}>
-                            <TodoCreateForm todoCreate={(projectId,authorId,todoText) => this.todoCreate(projectId,authorId,todoText)}
-                                                creators={this.state.creators}
-                                                projects={this.state.projects}/>
+                            <TodoCreateForm
+                                todoCreate={(projectId, authorId, todoText) => this.todoCreate(projectId, authorId, todoText)}
+                                creators={this.state.creators}
+                                projects={this.state.projects}/>
                         </Route>
                         <Route exact path={'/project/:id/'}
-                               component={() => <ProjectInfo items={this.state.projects}/>}/>
+                               component={() =>
+                                   <ProjectInfo items={this.state.projects}/>}
+                        />
                         <Route exact path={'/login/'}>
                             <AuthorizationForm getToken={(username, password) => this.getToken(username, password)}/>
                         </Route>

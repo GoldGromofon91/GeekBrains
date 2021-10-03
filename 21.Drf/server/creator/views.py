@@ -4,8 +4,9 @@ from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from creator.serializers import CreatorModelSerializer, CreatorModelSerializer_v2_0
 
 
-class CreatorViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
-                     viewsets.GenericViewSet):
+class CreatorViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin, viewsets.GenericViewSet):
+
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = get_user_model().objects.exclude(is_superuser=True)
 

@@ -1,4 +1,3 @@
-from rest_framework import mixins, viewsets
 from rest_framework.viewsets import ModelViewSet
 
 from todo.filter import ProjectFilter, TodoFilter
