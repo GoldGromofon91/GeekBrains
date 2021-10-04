@@ -11,9 +11,9 @@ services:
 
   backend:
     build:
-      context: .
-#    expose:
-#      - 8080
+      context: .build/
+    expose:
+      - 8080
     command: bash -c "
       ./_check_psql.sh psql_GB &&
       python /backend/server/manage.py makemigrations &&
@@ -22,9 +22,12 @@ services:
       python /backend/server/manage.py create_admin &&
       cd server/ &&
       gunicorn server.wsgi -b 0.0.0.0:8080"
-    ports:
-      - 8080:8080
     depends_on:
       - psql_GB
 
-
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
