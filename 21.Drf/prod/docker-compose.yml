@@ -11,7 +11,7 @@ services:
 
   backend:
     build:
-      context: .build/
+      context: .
     expose:
       - 8080
     command: bash -c "
@@ -31,3 +31,10 @@ services:
       - 8000:80
     depends_on:
       - backend
+
+  frontend:
+    build: ./frontend_nginx
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
