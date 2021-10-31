@@ -2,7 +2,7 @@ CONFIG_PROJECT = {
     "DEFAULT_CONF":
         {
             "DEFAULT_IP_ADDRESS": "127.0.0.1",
-            "DEFAULT_PORT": 8888,
+            "DEFAULT_PORT": 8811,
             "MAX_CONNECTIONS": 5,
             "MAX_PACKAGE_LENGTH": 256,
             "ENCODING": "utf-8",
