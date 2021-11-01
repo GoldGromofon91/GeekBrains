@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  psql_GB:
+    image: postgres:13.1
+    privileged: true
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: geekbrains
+      POSTGRES_DB: todo
+
+  backend:
+    build:
+      context: .
+    expose:
+      - 8080
+    command: bash -c "
+      ./_check_psql.sh psql_GB &&
+      python /backend/server/manage.py makemigrations &&
+      python /backend/server/manage.py migrate &&
+      python /backend/server/manage.py create_author 10 &&
+      python /backend/server/manage.py create_admin &&
+      cd server/ &&
+      gunicorn server.wsgi -b 0.0.0.0:8080"
+    depends_on:
+      - psql_GB
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
+
+  frontend:
+    build: ./frontend_nginx
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
