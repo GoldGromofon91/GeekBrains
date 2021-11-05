@@ -2,13 +2,16 @@ import select
 import CONFIGS
 from socket import socket, AF_INET, SOCK_STREAM
 
-from function import create_ip_port, request_server, get_message_from_server, check_message_on_server, send
+from ServerClass import Server
+from function import get_message_from_server, check_message_on_server, send
 
 
-def start_server():
-    ip,port = create_ip_port(type='client')
+
+def main():
+    # ip,port = create_ip_port()
+    server = Server()
     listen_socket = socket(AF_INET, SOCK_STREAM)
-    listen_socket.bind((ip, port))
+    listen_socket.bind((server.ip, server.port))
     listen_socket.listen(CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('MAX_CONNECTIONS'))
     listen_socket.settimeout(0.3)
 
@@ -51,4 +54,4 @@ def start_server():
 
 
 if __name__ == "__main__":
-    start_server()
+    main()

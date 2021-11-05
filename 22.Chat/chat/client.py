@@ -1,6 +1,7 @@
 from socket import socket, AF_INET, SOCK_STREAM
 from threading import Thread
 
+from ClientClass import Client
 from function import get_presence_message, send, get_message_from_server, check_message_on_client, create_ip_port, \
     sender_msg, writer_msg
 
@@ -8,11 +9,13 @@ from function import get_presence_message, send, get_message_from_server, check_
 
 def start():
     #Получаем ip,port
-    ip,port = create_ip_port(type='client')
+    # ip,port = create_ip_port(type='client')
+    client=Client()
     # Открываем сокет
     new_socket = socket(AF_INET,SOCK_STREAM)
-    new_socket.connect((ip,port))
+    new_socket.connect((client.ip,client.port))
     user_name = input('Enter username: ')
+    client.name = user_name
     message = get_presence_message(user_name)
     send(new_socket,message)
 
