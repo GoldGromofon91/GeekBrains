@@ -11,12 +11,6 @@ class ClientVerifierMeta(type):
 
     @staticmethod
     def verify_socket(clsname, clsdict):
-        """
-        Проверяет Client socket на:
-        - отсутствие создания сокетов на уровне классов
-        - отсутствие вызовов методов сервера (listen, accept)
-        - использование TCP соединения в сокетах
-        """
 
         socket_store = None
         for key, value in clsdict.items():
