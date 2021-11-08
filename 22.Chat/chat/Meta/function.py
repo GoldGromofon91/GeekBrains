@@ -2,18 +2,18 @@ import json
 import sys
 from json import JSONDecodeError
 
-import CONFIGS
+from .CONFIGS import CONFIG_PROJECT
 import time
-from Logger import logger
+from .Logger import logger
 
 
 @logger('functional.log')
 def get_presence_message(account_name):
     message = {
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION'): CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('PRESENCE'),
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('TIME'): round(time.time(), 2),
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('USER'): {
-            CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('ACCOUNT_NAME'): account_name
+        CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION'): CONFIG_PROJECT['DEFAULT_CONF'].get('PRESENCE'),
+        CONFIG_PROJECT['DEFAULT_CONF'].get('TIME'): round(time.time(), 2),
+        CONFIG_PROJECT['DEFAULT_CONF'].get('USER'): {
+            CONFIG_PROJECT['DEFAULT_CONF'].get('ACCOUNT_NAME'): account_name
         }
     }
     return message
@@ -22,15 +22,15 @@ def get_presence_message(account_name):
 @logger('functional.log')
 def send(socket, client_message):
     json_obj = json.dumps(client_message)
-    response = json_obj.encode(CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('ENCODING'))
+    response = json_obj.encode(CONFIG_PROJECT['DEFAULT_CONF'].get('ENCODING'))
     socket.send(response)
 
 
 @logger('functional.log')
 def get_message_from_server(socket):
-    response = socket.recv(CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('MAX_PACKAGE_LENGTH'))
+    response = socket.recv(CONFIG_PROJECT['DEFAULT_CONF'].get('MAX_PACKAGE_LENGTH'))
     try:
-        response_decode = response.decode(CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('ENCODING'))
+        response_decode = response.decode(CONFIG_PROJECT['DEFAULT_CONF'].get('ENCODING'))
     except:
         raise JSONDecodeError('Ошибка декодирования')
     return json.loads(response_decode)
@@ -38,19 +38,19 @@ def get_message_from_server(socket):
 
 @logger('functional.log')
 def check_message_on_server(message):
-    if CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION') in message \
-            and message.get(CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION')) == CONFIGS.CONFIG_PROJECT[
+    if CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION') in message \
+            and message.get(CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION')) == CONFIG_PROJECT[
         'DEFAULT_CONF'].get('PRESENCE') \
-            and CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('TIME') in message \
-            and CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('USER') in message:
-        return {CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE'): CONFIGS.CONFIG_PROJECT['STATUS'].get('OK')}
-    return {CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE'): CONFIGS.CONFIG_PROJECT['STATUS'].get('BAD_REQUEST')}
+            and CONFIG_PROJECT['DEFAULT_CONF'].get('TIME') in message \
+            and CONFIG_PROJECT['DEFAULT_CONF'].get('USER') in message:
+        return {CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE'): CONFIG_PROJECT['STATUS'].get('OK')}
+    return {CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE'): CONFIG_PROJECT['STATUS'].get('BAD_REQUEST')}
 
 
 @logger('functional.log')
 def check_message_on_client(message):
-    if CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE') in message:
-        if message.get(CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE')) == 200:
+    if CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE') in message:
+        if message.get(CONFIG_PROJECT['DEFAULT_CONF'].get('RESPONSE')) == 200:
             return {
                 'status': 'Connected',
                 '200': 'OK'
@@ -58,7 +58,7 @@ def check_message_on_client(message):
 
     return {
         'status': 'Canceled',
-        '400': f'{CONFIGS.CONFIG_PROJECT["DEFAULT_CONF"].get("ERROR")}'
+        '400': f'{CONFIG_PROJECT["DEFAULT_CONF"].get("ERROR")}'
     }
 
 
@@ -69,8 +69,8 @@ def create_ip_port(type=None):
         port = int(sys.argv[2])
     except Exception:
         print('Некорректные параметры сервера!\nИспользуются стандартные настройки')
-        ip = CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_IP_ADDRESS')
-        port = CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_PORT')
+        ip = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_IP_ADDRESS')
+        port = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_PORT')
         return ip,port
 
 
@@ -80,8 +80,8 @@ def create_ip_port(type=None):
             port = int(sys.argv[2])
         except Exception:
             print('Некорректные параметры сервера!\nИспользуются стандартные настройки')
-            ip = CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_IP_ADDRESS')
-            port = CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_PORT')
+            ip = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_IP_ADDRESS')
+            port = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_PORT')
         return ip, port
 
 
@@ -102,11 +102,11 @@ def request_server(read_clients_list, write_clients_list, client_list):
 
 def create_user_msg(message,username):
     message = {
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION'): CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('MESSAGE'),
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('TIME'): round(time.time(), 2),
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('TO'): "#room_name",
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('FROM'): username,
-        CONFIGS.CONFIG_PROJECT['DEFAULT_CONF'].get('MESSAGE'): message
+        CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION'): CONFIG_PROJECT['DEFAULT_CONF'].get('MESSAGE'),
+        CONFIG_PROJECT['DEFAULT_CONF'].get('TIME'): round(time.time(), 2),
+        CONFIG_PROJECT['DEFAULT_CONF'].get('TO'): "#room_name",
+        CONFIG_PROJECT['DEFAULT_CONF'].get('FROM'): username,
+        CONFIG_PROJECT['DEFAULT_CONF'].get('MESSAGE'): message
     }
     return message
 
