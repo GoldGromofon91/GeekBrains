@@ -32,7 +32,6 @@ class GeneralServer(metaclass=ServerVerifierMeta):
                 self.client_list.append(client)
             except OSError:
                 pass
-
             try:
                 self.read_clients, self.write_clients, self.error = select.select(self.client_list, self.client_list,[], 0)
             except:
