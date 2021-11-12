@@ -67,18 +67,17 @@ def create_ip_port(type=None):
     try:
         ip = sys.argv[1]
         port = int(sys.argv[2])
-    except Exception:
+    except:
         print('Некорректные параметры сервера!\nИспользуются стандартные настройки')
         ip = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_IP_ADDRESS')
         port = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_PORT')
-        return ip,port
-
+        return ip, port
 
     if type == 'client':
         try:
             ip = sys.argv[1]
             port = int(sys.argv[2])
-        except Exception:
+        except:
             print('Некорректные параметры сервера!\nИспользуются стандартные настройки')
             ip = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_IP_ADDRESS')
             port = CONFIG_PROJECT['DEFAULT_CONF'].get('DEFAULT_PORT')
@@ -100,7 +99,7 @@ def request_server(read_clients_list, write_clients_list, client_list):
             continue
 
 
-def create_user_msg(message,username):
+def create_user_msg(message, username):
     message = {
         CONFIG_PROJECT['DEFAULT_CONF'].get('ACTION'): CONFIG_PROJECT['DEFAULT_CONF'].get('MESSAGE'),
         CONFIG_PROJECT['DEFAULT_CONF'].get('TIME'): round(time.time(), 2),
@@ -112,7 +111,7 @@ def create_user_msg(message,username):
 
 
 @logger('functional.log')
-def sender_msg(transport,account_name):
+def sender_msg(transport, account_name):
     while True:
         message = input()
         msg = create_user_msg(message, account_name)
