@@ -14,6 +14,7 @@ class GeneralClient():
 
     def __init__(self):
         self.client_socket = None
+
     @logger('functional.log')
     def run(self):
         client_socket = socket(AF_INET, SOCK_STREAM)

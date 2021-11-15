@@ -40,7 +40,7 @@ class GeneralServer(metaclass=ServerVerifierMeta):
 
     @logger('functional.log')
     def init_db(self):
-        self.db = ServerDB(base=Base,db_name='server.sqlite')
+        self.db = ServerDB(base=Base, db_name='server.sqlite')
         self.db.open_connect()
 
     @logger('functional.log')
@@ -51,7 +51,8 @@ class GeneralServer(metaclass=ServerVerifierMeta):
         while True:
             self.accept_connection()
             try:
-                self.read_clients, self.write_clients, self.error = select.select(self.client_list, self.client_list,[], 0)
+                self.read_clients, self.write_clients, self.error = select.select(self.client_list, self.client_list,
+                                                                                  [], 0)
             except:
                 pass
 
