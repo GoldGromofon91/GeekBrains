@@ -5,6 +5,8 @@ from .CONFIGS import CONFIG_PROJECT
 from .Logger import logger
 from .meta import ServerVerifierMeta, CheckIP, CheckPort
 from .function import get_message_from_server, send, check_message_on_server
+from .db_conf import ServerDB
+from .models import Base
 
 
 class GeneralServer(metaclass=ServerVerifierMeta):
@@ -12,7 +14,8 @@ class GeneralServer(metaclass=ServerVerifierMeta):
     ip = CheckIP()
 
     def __init__(self):
-        self.listen_socket = None
+        self.lsocket = None
+        self.db = None
         self.client_list = []
         self.read_clients = []
         self.write_clients = []
@@ -20,18 +23,33 @@ class GeneralServer(metaclass=ServerVerifierMeta):
         self.user_messages = []
 
     @logger('functional.log')
+    def create_connection(self):
+        self.lsocket = socket(AF_INET, SOCK_STREAM)
+        self.lsocket.bind((self.ip, self.port))
+        self.lsocket.listen(CONFIG_PROJECT['DEFAULT_CONF'].get('MAX_CONNECTIONS'))
+        self.lsocket.settimeout(0.3)
+
+    @logger('functional.log')
+    def accept_connection(self):
+        try:
+            client, addr = self.lsocket.accept()
+        except OSError:
+            pass
+        else:
+            self.client_list.append(client)
+
+    @logger('functional.log')
+    def init_db(self):
+        self.db = ServerDB(base=Base,db_name='server.sqlite')
+        self.db.open_connect()
+
+    @logger('functional.log')
     def run(self):
-        self.listen_socket = socket(AF_INET, SOCK_STREAM)
-        self.listen_socket.bind((self.ip, self.port))
-        self.listen_socket.listen(CONFIG_PROJECT['DEFAULT_CONF'].get('MAX_CONNECTIONS'))
-        self.listen_socket.settimeout(0.3)
+        self.create_connection()
+        self.init_db()
 
         while True:
-            try:
-                client, addr = self.listen_socket.accept()
-                self.client_list.append(client)
-            except OSError:
-                pass
+            self.accept_connection()
             try:
                 self.read_clients, self.write_clients, self.error = select.select(self.client_list, self.client_list,[], 0)
             except:

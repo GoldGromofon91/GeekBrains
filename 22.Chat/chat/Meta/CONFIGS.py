@@ -16,6 +16,8 @@ CONFIG_PROJECT = {
             "PRESENCE": "presence",
             "RESPONSE": "response",
             "ERROR": "error",
+            "DB_NAME_ENGINE": "sqlite:///",
+            "DB_NAME": ":memory:"
         },
     "STATUS":
         {
