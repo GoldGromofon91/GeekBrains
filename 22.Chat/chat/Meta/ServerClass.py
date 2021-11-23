@@ -1,7 +1,8 @@
 import select
 from socket import socket, AF_INET, SOCK_STREAM
 
-from . CONFIGS import CONFIG_PROJECT
+from .CONFIGS import CONFIG_PROJECT
+from .Logger import logger
 from .meta import ServerVerifierMeta, CheckIP, CheckPort
 from .function import get_message_from_server, send, check_message_on_server
 
@@ -18,6 +19,7 @@ class GeneralServer(metaclass=ServerVerifierMeta):
         self.error = []
         self.user_messages = []
 
+    @logger('functional.log')
     def run(self):
         self.listen_socket = socket(AF_INET, SOCK_STREAM)
         self.listen_socket.bind((self.ip, self.port))
@@ -30,10 +32,8 @@ class GeneralServer(metaclass=ServerVerifierMeta):
                 self.client_list.append(client)
             except OSError:
                 pass
-
             try:
-                self.read_clients, self.write_clients, self.error = select.select(self.client_list, self.client_list,
-                                                                                  [], 0)
+                self.read_clients, self.write_clients, self.error = select.select(self.client_list, self.client_list,[], 0)
             except:
                 pass
 

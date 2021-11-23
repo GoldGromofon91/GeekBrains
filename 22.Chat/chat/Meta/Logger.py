@@ -29,7 +29,6 @@ def logger(file, return_res=True, show_args=True):
                 logging.error(f'Function {func.__name__} crashed with Exception {exc} in {finish - start} sec')
                 return ''
 
-
             return res
 
         return wrapper
