@@ -1,10 +1,15 @@
-from django.shortcuts import render
-from rest_framework.viewsets import ModelViewSet
+from django.contrib.auth import get_user_model
+from rest_framework import viewsets, mixins
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
+from creator.serializers import CreatorModelSerializer, CreatorModelSerializer_v2_0
 
-from creator.models import Author
-from creator.serializers import CreatorModelSerializer
 
+class CreatorViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
+                     viewsets.GenericViewSet):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    queryset = get_user_model().objects.exclude(is_superuser=True)
 
-class CreatorViewSet(ModelViewSet):
-    queryset = Author.objects.all()
-    serializer_class = CreatorModelSerializer
+    def get_serializer_class(self):
+        if self.request.version == '2.0':
+            return CreatorModelSerializer_v2_0
+        return CreatorModelSerializer
